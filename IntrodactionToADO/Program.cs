@@ -23,13 +23,14 @@ namespace IntrodactionToADO
             //cmd.ExecuteNonQuery(); // метод позволяет отправлять запросы INSERT, UPDATE, DELETE
 
             // Выборка данных
-            string select_string = @"SELECT * FROM Authors";
+            //string select_string = @"SELECT * FROM Authors";
+            string select_string = @"SELECT * FROM Authors, Books WHERE Authors.id = Books.author";
             cmd.CommandText = select_string;
 
             SqlDataReader rdr = cmd.ExecuteReader();//контейнер который содержить результаты запроса (SqlDataReader)
             while (rdr.Read()) 
             {
-                Console.WriteLine($"{rdr[0]} {rdr[1]} {rdr[2]}");
+                Console.WriteLine($"{rdr[0]} {rdr[1]} {rdr[2]} Books - {rdr[5]}");
             }
 
             connection.Close(); // соединение нужно обьяз закрывать
