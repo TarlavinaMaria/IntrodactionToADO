@@ -30,7 +30,7 @@ namespace IntrodactionToADO
             SqlDataReader rdr = cmd.ExecuteReader();//контейнер который содержить результаты запроса (SqlDataReader)
             while (rdr.Read()) 
             {
-                Console.WriteLine($"{rdr[0]} {rdr[1]} {rdr[2]} Books - {rdr[5]}");
+                Console.WriteLine($"{rdr[0]} {rdr[1]} {rdr[2]} - {rdr[5]}");
             }
 
             connection.Close(); // соединение нужно обьяз закрывать
