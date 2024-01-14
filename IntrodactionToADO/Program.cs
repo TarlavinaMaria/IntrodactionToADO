@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace IntrodactionToADO
 {
@@ -35,6 +37,7 @@ namespace IntrodactionToADO
 
             //connection.Close(); // соединение нужно обьяз закрывать
             //AddAuthor("Inan", "Turgenev");
+            //AddBook(5, "Fathers and Sons", 300, 260);
             Print();
         }
         public static void AddAuthor(string first_name, string last_name)
@@ -47,6 +50,19 @@ namespace IntrodactionToADO
             connection.Open();
             cmd.ExecuteNonQuery();
             Console.WriteLine("Автор успешно добавлен в базу данных.");
+        }
+        public static void AddBook(int author, string title, decimal price, int pages)
+        {
+            SqlConnection connection = new SqlConnection(connection_string);
+            string insert_string = "INSERT INTO Books (author, title, price, pages) VALUES (@author, @title, @price, @pages)";
+            SqlCommand cmd = new SqlCommand(insert_string, connection);
+            cmd.Parameters.AddWithValue("@author", author);
+            cmd.Parameters.AddWithValue("@title", title);
+            cmd.Parameters.AddWithValue("@price", price);
+            cmd.Parameters.AddWithValue("@pages", pages);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Книга успешно добавлена в базу данных.");
         }
         public static void Print()
         {
@@ -61,5 +77,6 @@ namespace IntrodactionToADO
             }
             reader.Close();
         }
+
     }
 }
