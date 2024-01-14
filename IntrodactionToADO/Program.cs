@@ -36,9 +36,15 @@ namespace IntrodactionToADO
             //}
 
             //connection.Close(); // соединение нужно обьяз закрывать
+
+            //------------------------------------------Добавление в базу-------------------------------------------------------//
             //AddAuthor("Inan", "Turgenev");
             //AddBook(5, "Fathers and Sons", 300, 260);
-            Print();
+            //Print();
+
+            //------------------------------------------Добавление в базу-------------------------------------------------------//
+            //AddAuthorConsole();
+            AddBookConsole();
         }
         public static void AddAuthor(string first_name, string last_name)
         {
@@ -50,6 +56,29 @@ namespace IntrodactionToADO
             connection.Open();
             cmd.ExecuteNonQuery();
             Console.WriteLine("Автор успешно добавлен в базу данных.");
+        }
+        public static void AddAuthorConsole()
+        {
+            Console.WriteLine("Введите имя автора:");
+            string first_name = Console.ReadLine();
+            Console.WriteLine("Введите фамилию автора:");
+            string last_name = Console.ReadLine();
+            AddAuthor(first_name, last_name);
+            PrintAuthor();
+        }
+        public static void AddBookConsole()
+        {
+            PrintAuthor();
+            Console.WriteLine("Введите Id автора:");
+            int author = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите название книги:");
+            string title = Console.ReadLine();
+            Console.WriteLine("Введите цену книги:");
+            decimal price = Convert.ToDecimal(Console.ReadLine());
+            Console.WriteLine("Введите кол-во страниц книги:");
+            int pages = Convert.ToInt32(Console.ReadLine());
+            AddBook(author, title, price, pages);
+            PrintAuthor();
         }
         public static void AddBook(int author, string title, decimal price, int pages)
         {
@@ -74,6 +103,19 @@ namespace IntrodactionToADO
             while (reader.Read())
             {
                 Console.WriteLine($"Author: {reader[1]} {reader[2]}, Book: {reader[5]}");
+            }
+            reader.Close();
+        }
+        public static void PrintAuthor()
+        {
+            SqlConnection connection = new SqlConnection(connection_string);
+            connection.Open();
+            string query = @"SELECT * FROM Authors";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Console.WriteLine($"Id: {reader[0]} - {reader[1]} {reader[2]}");
             }
             reader.Close();
         }
