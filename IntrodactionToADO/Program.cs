@@ -40,13 +40,14 @@ namespace IntrodactionToADO
             //------------------------------------------Добавление в базу-------------------------------------------------------//
             //AddAuthor("Inan", "Turgenev");
             //PrintAuthor();
-            //AddBook(1009, "Fathers and Sons", 300, 260);
+            //AddBook(6, "Fathers and Sons", 300, 260);
             //Print();
 
             //------------------------------------------Добавление в базу-------------------------------------------------------//
             // Diana Jones - Howls Moving Castle - 250 - 400
             //AddAuthorConsole();
             //AddBookConsole();
+            Print();
         }
         public static void AddAuthor(string first_name, string last_name)
         {
@@ -129,7 +130,7 @@ namespace IntrodactionToADO
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                Console.WriteLine($"Author: {reader[1]} {reader[2]}, Book: {reader[5]}");
+                Console.WriteLine($"Автор: {reader[1]} {reader[2]}, Книга: {reader[5]}, Цена: {reader[6]}, Страниц: {reader[7]}");
             }
             // Закрытие подключения
             reader.Close();
@@ -148,7 +149,7 @@ namespace IntrodactionToADO
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                Console.WriteLine($"Id: {reader[0]} - {reader[1]} {reader[2]}");
+                Console.WriteLine($"Id: {reader[0]}, Автор: {reader[1]} {reader[2]}");
             }
             // Закрытие подключения
             reader.Close();
