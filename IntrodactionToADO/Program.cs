@@ -39,12 +39,14 @@ namespace IntrodactionToADO
 
             //------------------------------------------Добавление в базу-------------------------------------------------------//
             //AddAuthor("Inan", "Turgenev");
-            //AddBook(5, "Fathers and Sons", 300, 260);
+            //PrintAuthor();
+            //AddBook(1009, "Fathers and Sons", 300, 260);
             //Print();
 
             //------------------------------------------Добавление в базу-------------------------------------------------------//
+            // Diana Jones - Howl’s Moving Castle - 250 - 400
             //AddAuthorConsole();
-            AddBookConsole();
+            //AddBookConsole();
         }
         public static void AddAuthor(string first_name, string last_name)
         {
@@ -78,7 +80,7 @@ namespace IntrodactionToADO
             Console.WriteLine("Введите кол-во страниц книги:");
             int pages = Convert.ToInt32(Console.ReadLine());
             AddBook(author, title, price, pages);
-            PrintAuthor();
+            Print();
         }
         public static void AddBook(int author, string title, decimal price, int pages)
         {
