@@ -35,7 +35,7 @@ namespace IntrodactionToADO
             //Console.WriteLine($"{rdr[0]} {rdr[1]} {rdr[2]} - {rdr[5]}");
             //}
 
-            //connection.Close(); // соединение нужно обьяз закрывать
+            //connection.Close(); // соединение нужно обяз закрывать
 
             //------------------------------------------Добавление в базу-------------------------------------------------------//
             //AddAuthor("Inan", "Turgenev");
@@ -44,33 +44,45 @@ namespace IntrodactionToADO
             //Print();
 
             //------------------------------------------Добавление в базу-------------------------------------------------------//
-            // Diana Jones - Howl’s Moving Castle - 250 - 400
+            // Diana Jones - Howls Moving Castle - 250 - 400
             //AddAuthorConsole();
             //AddBookConsole();
         }
         public static void AddAuthor(string first_name, string last_name)
         {
+            // Создание подключения к базе данных
             SqlConnection connection = new SqlConnection(connection_string);
+            // Открытие подключения
+            connection.Open();
+            // Создание команды для выполнения SQL-запроса
             string insert_string = "INSERT INTO Authors (first_name, last_name) VALUES (@first_name, @last_name)";
             SqlCommand cmd = new SqlCommand(insert_string, connection);
+            // Параметры для добавления данных о книге
             cmd.Parameters.AddWithValue("@first_name", first_name);
             cmd.Parameters.AddWithValue("@last_name", last_name);
-            connection.Open();
+            // Выполнение команды
             cmd.ExecuteNonQuery();
             Console.WriteLine("Автор успешно добавлен в базу данных.");
+            // Закрытие подключения
+            connection.Close();
         }
         public static void AddAuthorConsole()
         {
+            // Ввод данных из консоли
             Console.WriteLine("Введите имя автора:");
             string first_name = Console.ReadLine();
             Console.WriteLine("Введите фамилию автора:");
             string last_name = Console.ReadLine();
+            //Вызов фунции добавления
             AddAuthor(first_name, last_name);
+            // Вызов отрисовки базы и книг
             PrintAuthor();
         }
         public static void AddBookConsole()
         {
+            //Выбор id автора
             PrintAuthor();
+            // Ввод данных из консоли
             Console.WriteLine("Введите Id автора:");
             int author = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Введите название книги:");
@@ -79,47 +91,68 @@ namespace IntrodactionToADO
             decimal price = Convert.ToDecimal(Console.ReadLine());
             Console.WriteLine("Введите кол-во страниц книги:");
             int pages = Convert.ToInt32(Console.ReadLine());
+            //Вызов фунции добавления
             AddBook(author, title, price, pages);
+            // Вызов отрисовки базы
             Print();
         }
         public static void AddBook(int author, string title, decimal price, int pages)
         {
+            // Создание подключения к базе данных
             SqlConnection connection = new SqlConnection(connection_string);
+            // Открытие подключения
+            connection.Open();
+            // Создание команды для выполнения SQL-запроса
             string insert_string = "INSERT INTO Books (author, title, price, pages) VALUES (@author, @title, @price, @pages)";
             SqlCommand cmd = new SqlCommand(insert_string, connection);
+            // Параметры для добавления данных о авторе
             cmd.Parameters.AddWithValue("@author", author);
             cmd.Parameters.AddWithValue("@title", title);
             cmd.Parameters.AddWithValue("@price", price);
             cmd.Parameters.AddWithValue("@pages", pages);
-            connection.Open();
+            // Выполнение команды
             cmd.ExecuteNonQuery();
             Console.WriteLine("Книга успешно добавлена в базу данных.");
+            // Закрытие подключения
+            connection.Close();
         }
         public static void Print()
         {
+            // Создание подключения к базе данных
             SqlConnection connection = new SqlConnection(connection_string);
+            // Открытие подключения
             connection.Open();
+            // Создание команды для выполнения SQL-запроса
             string query = @"SELECT * FROM Authors, Books WHERE Authors.id = Books.author";
             SqlCommand cmd = new SqlCommand(query, connection);
+            // Чтение данных из базы
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 Console.WriteLine($"Author: {reader[1]} {reader[2]}, Book: {reader[5]}");
             }
+            // Закрытие подключения
             reader.Close();
+            connection.Close();
         }
         public static void PrintAuthor()
         {
+            // Создание подключения к базе данных
             SqlConnection connection = new SqlConnection(connection_string);
+            // Открытие подключения
             connection.Open();
+            // Создание команды для выполнения SQL-запроса
             string query = @"SELECT * FROM Authors";
             SqlCommand cmd = new SqlCommand(query, connection);
+            // Чтение данных из базы
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 Console.WriteLine($"Id: {reader[0]} - {reader[1]} {reader[2]}");
             }
+            // Закрытие подключения
             reader.Close();
+            connection.Close();
         }
 
     }
