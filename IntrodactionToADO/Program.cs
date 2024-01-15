@@ -45,9 +45,9 @@ namespace IntrodactionToADO
 
             //------------------------------------------Добавление в базу-------------------------------------------------------//
             // Diana Jones - Howls Moving Castle - 250 - 400
-            //AddAuthorConsole();
-            //AddBookConsole();
-            Print();
+            AddAuthorConsole();
+            AddBookConsole();
+            //Print();
         }
         public static void AddAuthor(string first_name, string last_name)
         {
@@ -77,7 +77,7 @@ namespace IntrodactionToADO
             //Вызов фунции добавления
             AddAuthor(first_name, last_name);
             // Вызов отрисовки базы и книг
-            PrintAuthor();
+            //PrintAuthor();
         }
         public static void AddBookConsole()
         {
