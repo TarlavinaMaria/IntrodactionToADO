@@ -17,7 +17,6 @@ namespace Library
         { 
             this.connerctionString = connectionString;
             connection = new SqlConnection(connectionString);
-
         }
         ~Library() 
         {
