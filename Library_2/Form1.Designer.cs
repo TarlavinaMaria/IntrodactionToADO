@@ -31,6 +31,7 @@
             this.Execute = new System.Windows.Forms.Button();
             this.rtbQuery = new System.Windows.Forms.RichTextBox();
             this.dgwResults = new System.Windows.Forms.DataGridView();
+            this.cbTables = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgwResults)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,16 +62,28 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgwResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwResults.Location = new System.Drawing.Point(13, 42);
+            this.dgwResults.Location = new System.Drawing.Point(13, 69);
             this.dgwResults.Name = "dgwResults";
-            this.dgwResults.Size = new System.Drawing.Size(758, 381);
+            this.dgwResults.Size = new System.Drawing.Size(758, 354);
             this.dgwResults.TabIndex = 3;
+            // 
+            // cbTables
+            // 
+            this.cbTables.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTables.FormattingEnabled = true;
+            this.cbTables.Location = new System.Drawing.Point(13, 42);
+            this.cbTables.Name = "cbTables";
+            this.cbTables.Size = new System.Drawing.Size(677, 21);
+            this.cbTables.TabIndex = 4;
+            this.cbTables.SelectedIndexChanged += new System.EventHandler(this.cbTables_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbTables);
             this.Controls.Add(this.dgwResults);
             this.Controls.Add(this.rtbQuery);
             this.Controls.Add(this.Execute);
@@ -86,6 +99,7 @@
         private System.Windows.Forms.Button Execute;
         private System.Windows.Forms.RichTextBox rtbQuery;
         private System.Windows.Forms.DataGridView dgwResults;
+        private System.Windows.Forms.ComboBox cbTables;
     }
 }
 
