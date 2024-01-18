@@ -14,22 +14,22 @@ using System.Diagnostics;
 
 namespace Academy
 {
-    public partial class Shedule : Form
+    public partial class Schedule : Form
     {
         string connectionString;
         SqlConnection connection;
         SqlDataReader reader;
         DataTable table;
-        public Shedule()
+        public Schedule()
         {
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             connection = new SqlConnection(connectionString);
+            Load_lesson_select_Selected();
         }
-
-        private void lesson_select_SelectedIndexChanged(object sender, EventArgs e)
+        void Load_lesson_select_Selected()
         {
-            string commandLine = $@"SELECT lesson_id FROM PD_212.bdo.Shedule";
+            string commandLine = @"SELECT lesson_id FROM Schedule";
             SqlCommand cmd = new SqlCommand(commandLine, connection);
             connection.Open();
             reader = cmd.ExecuteReader();
@@ -39,6 +39,19 @@ namespace Academy
             }
             reader.Close();
             connection.Close();
+        }
+        private void lesson_select_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //string commandLine = @"SELECT table_name FROM information_schema.tables";
+            //SqlCommand cmd = new SqlCommand(commandLine, connection);
+            //connection.Open();
+            //reader = cmd.ExecuteReader();
+            //while (reader.Read())
+            //{
+            //    lesson_select.Items.Add(reader[0]);
+            //}
+            //reader.Close();
+            //connection.Close();
         }
 
         private void buttonExit_Shedule_Click(object sender, EventArgs e)

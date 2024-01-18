@@ -75,7 +75,7 @@ namespace Academy
 
         private void buttonAddShedule_Click(object sender, EventArgs e)
         {
-            Shedule shedule = new Shedule();
+            Schedule shedule = new Schedule();
             shedule.Show();
         }
     }

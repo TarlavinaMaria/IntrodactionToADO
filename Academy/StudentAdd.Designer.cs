@@ -95,9 +95,9 @@
             this.birth_date_text.AutoSize = true;
             this.birth_date_text.Location = new System.Drawing.Point(12, 132);
             this.birth_date_text.Name = "birth_date_text";
-            this.birth_date_text.Size = new System.Drawing.Size(86, 13);
+            this.birth_date_text.Size = new System.Drawing.Size(146, 13);
             this.birth_date_text.TabIndex = 7;
-            this.birth_date_text.Text = "Дата рождения";
+            this.birth_date_text.Text = "Дата рождения, YY-MM-DD";
             // 
             // birth_date_input
             // 

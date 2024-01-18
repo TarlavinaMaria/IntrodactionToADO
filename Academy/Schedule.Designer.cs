@@ -1,6 +1,6 @@
 ﻿namespace Academy
 {
-    partial class Shedule
+    partial class Schedule
     {
         /// <summary>
         /// Required designer variable.
