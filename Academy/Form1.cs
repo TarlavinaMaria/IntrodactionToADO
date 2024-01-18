@@ -34,10 +34,73 @@ namespace Academy
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                comboBox1.Items.Add(reader[0]);
+                cbTables.Items.Add(reader[0]);
             }
             reader.Close();
             connection.Close();
+        }
+
+        private void cbTables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string commandLine = $@"SELECT * FROM {cbTables.SelectedItem}";
+            SqlCommand cmd = new SqlCommand(commandLine, connection);
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            //создаем таблицу, которая будет хранить результаты выборки
+            table = new DataTable();
+            //создаем шапку этой таблицы
+            for (int i = 0; i < reader.FieldCount; i++) table.Columns.Add(reader.GetName(i));
+            //заполняем строки содержимым
+            while (reader.Read())
+            {
+                //создаем новуб строку с заданным набором полей
+                DataRow row = table.NewRow();
+                // заполняем строку данными
+                for (int i = 0; i < reader.FieldCount; i++) row[i] = reader[i];
+                //добавляе заполненную строку в таблицу
+                table.Rows.Add(row);
+            }
+            dgwResults.DataSource = table;
+
+            reader.Close();
+            connection.Close();
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string cmdLine = rtbQuery.Text;
+                SqlCommand cmd = new SqlCommand(cmdLine, connection);
+
+                connection.Open();
+                reader = cmd.ExecuteReader();
+
+                //создаем таблицу, которая будет хранить результаты выборки
+                table = new DataTable();
+                //создаем шапку этой таблицы
+                for (int i = 0; i < reader.FieldCount; i++) table.Columns.Add(reader.GetName(i));
+                //заполняем строки содержимым
+                while (reader.Read())
+                {
+                    //создаем новуб строку с заданным набором полей
+                    DataRow row = table.NewRow();
+                    // заполняем строку данными
+                    for (int i = 0; i < reader.FieldCount; i++) row[i] = reader[i];
+                    //добавляе заполненную строку в таблицу
+                    table.Rows.Add(row);
+                }
+                dgwResults.DataSource = table;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(this, exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                if (connection != null) connection.Close();
+            }
         }
     }
 }

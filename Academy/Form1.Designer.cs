@@ -28,34 +28,77 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbTables = new System.Windows.Forms.ComboBox();
+            this.dgwResults = new System.Windows.Forms.DataGridView();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.rtbQuery = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwResults)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cbTables
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cbTables.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(13, 13);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(684, 21);
-            this.comboBox1.TabIndex = 0;
+            this.cbTables.FormattingEnabled = true;
+            this.cbTables.Location = new System.Drawing.Point(13, 13);
+            this.cbTables.Name = "cbTables";
+            this.cbTables.Size = new System.Drawing.Size(775, 21);
+            this.cbTables.TabIndex = 0;
+            this.cbTables.SelectedIndexChanged += new System.EventHandler(this.cbTables_SelectedIndexChanged);
+            // 
+            // dgwResults
+            // 
+            this.dgwResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgwResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwResults.Location = new System.Drawing.Point(13, 69);
+            this.dgwResults.Name = "dgwResults";
+            this.dgwResults.Size = new System.Drawing.Size(775, 455);
+            this.dgwResults.TabIndex = 1;
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAdd.Location = new System.Drawing.Point(703, 40);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(85, 23);
+            this.buttonAdd.TabIndex = 2;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // rtbQuery
+            // 
+            this.rtbQuery.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbQuery.Location = new System.Drawing.Point(13, 40);
+            this.rtbQuery.Name = "rtbQuery";
+            this.rtbQuery.Size = new System.Drawing.Size(684, 20);
+            this.rtbQuery.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(800, 536);
+            this.Controls.Add(this.rtbQuery);
+            this.Controls.Add(this.buttonAdd);
+            this.Controls.Add(this.dgwResults);
+            this.Controls.Add(this.cbTables);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Academy PD_212";
+            ((System.ComponentModel.ISupportInitialize)(this.dgwResults)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbTables;
+        private System.Windows.Forms.DataGridView dgwResults;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.TextBox rtbQuery;
     }
 }
 
