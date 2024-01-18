@@ -36,6 +36,7 @@ namespace Academy
                 string group = group_input.Text;
 
                 connection.Open();
+
                 string query = "INSERT INTO Students (last_name, first_name, middle_name, birth_date, [group]) VALUES (@last_name, @first_name, @middle_name, @birth_date, @group)";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@last_name", last_name);
@@ -46,8 +47,8 @@ namespace Academy
                 cmd.ExecuteNonQuery();
                 MessageBox.Show(this, "Успешно добавлено");
 
-                last_name_input.Clear();
                 first_name_input.Clear();
+                last_name_input.Clear();
                 middle_name_input.Clear();
                 birth_date_input.Clear();
                 group_input.Clear();
@@ -60,7 +61,7 @@ namespace Academy
             {
                 if (connection != null) connection.Close();
             }
-            
+
         }
         private void buttonExit_Click(object sender, EventArgs e)
         {

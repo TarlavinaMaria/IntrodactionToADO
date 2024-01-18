@@ -31,6 +31,7 @@
             this.cbTables = new System.Windows.Forms.ComboBox();
             this.dgwResults = new System.Windows.Forms.DataGridView();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonAddShedule = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwResults)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,17 +60,28 @@
             // 
             this.buttonAdd.Location = new System.Drawing.Point(13, 40);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(141, 23);
+            this.buttonAdd.Size = new System.Drawing.Size(141, 38);
             this.buttonAdd.TabIndex = 2;
             this.buttonAdd.Text = "Add Student";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // buttonAddShedule
+            // 
+            this.buttonAddShedule.Location = new System.Drawing.Point(160, 40);
+            this.buttonAddShedule.Name = "buttonAddShedule";
+            this.buttonAddShedule.Size = new System.Drawing.Size(141, 38);
+            this.buttonAddShedule.TabIndex = 3;
+            this.buttonAddShedule.Text = "Add Schedule";
+            this.buttonAddShedule.UseVisualStyleBackColor = true;
+            this.buttonAddShedule.Click += new System.EventHandler(this.buttonAddShedule_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 544);
+            this.Controls.Add(this.buttonAddShedule);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dgwResults);
             this.Controls.Add(this.cbTables);
@@ -85,6 +97,7 @@
         private System.Windows.Forms.ComboBox cbTables;
         private System.Windows.Forms.DataGridView dgwResults;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonAddShedule;
     }
 }
 

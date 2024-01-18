@@ -72,5 +72,11 @@ namespace Academy
             StudentAdd studentAdd = new StudentAdd();
             studentAdd.Show();
         }
+
+        private void buttonAddShedule_Click(object sender, EventArgs e)
+        {
+            Shedule shedule = new Shedule();
+            shedule.Show();
+        }
     }
 }
