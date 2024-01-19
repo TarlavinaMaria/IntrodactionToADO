@@ -36,6 +36,20 @@ namespace Academy
                 string group = group_input.Text;
 
                 connection.Open();
+                string checkQuery = "SELECT COUNT (*) FROM Students WHERE last_name = @last_name AND first_name = @first_name AND middle_name = @middle_name AND birth_date = @birth_date AND [group] = @group";
+                SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                checkCommand.Parameters.AddWithValue("@last_name", last_name);
+                checkCommand.Parameters.AddWithValue("@first_name", first_name);
+                checkCommand.Parameters.AddWithValue("@middle_name", middle_name);
+                checkCommand.Parameters.AddWithValue("@birth_date", birth_date);
+                checkCommand.Parameters.AddWithValue("@group", group);
+
+                int count = (int)checkCommand.ExecuteScalar();
+                if (count > 0) 
+                {
+                    Console.WriteLine("Запись уже существует.");
+                    return;
+                }
 
                 string query = "INSERT INTO Students (last_name, first_name, middle_name, birth_date, [group]) VALUES (@last_name, @first_name, @middle_name, @birth_date, @group)";
                 SqlCommand cmd = new SqlCommand(query, connection);
