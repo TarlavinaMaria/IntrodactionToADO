@@ -25,25 +25,28 @@ namespace Academy
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             connection = new SqlConnection(connectionString);
-            LoadTablesToComboBox();
+            LoadGroupsToComboBox(cbGroup);
+            SelectStudents();
         }
-        void LoadTablesToComboBox()
+        public void LoadGroupsToComboBox(System.Windows.Forms.ComboBox comboBox)
         {
-            string commandLine = @"SELECT table_name FROM information_schema.tables";
+            string commandLine = @"SELECT group_name FROM Groups";
             SqlCommand cmd = new SqlCommand(commandLine, connection);
             connection.Open();
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                cbTables.Items.Add(reader[0]);
+                comboBox.Items.Add(reader[0]);
             }
             reader.Close();
             connection.Close();
         }
-
-        private void cbTables_SelectedIndexChanged(object sender, EventArgs e)
+        void SelectStudents(string group = "")
         {
-            string commandLine = $@"SELECT * FROM {cbTables.SelectedItem}";
+            string commandLine = @"SELECT 
+                                    last_name, first_name, middle_name, birth_date, group_name 
+                                    FROM Students JOIN Groups ON [group] = group_id";
+            if (group.Length != 0) commandLine += $" WHERE [group_name] = '{group}'";
             SqlCommand cmd = new SqlCommand(commandLine, connection);
             connection.Open();
             reader = cmd.ExecuteReader();
@@ -57,13 +60,31 @@ namespace Academy
                 //создаем новуб строку с заданным набором полей
                 DataRow row = table.NewRow();
                 // заполняем строку данными
-                for (int i = 0; i < reader.FieldCount; i++) row[i] = reader[i];
+                for (int i = 0; i < reader.FieldCount; i++)
+                { 
+                    row[i] = reader[i]; 
+                }
+                //исправление строки с датой формат вывода
+                row["birth_date"] = Convert.ToDateTime(reader["birth_date"]).ToString("yyyy.MM.dd");
                 //добавляе заполненную строку в таблицу
                 table.Rows.Add(row);
             }
-            dgwResults.DataSource = table;
-
+            dgvStudents.DataSource = table;
             reader.Close();
+            if (group.Length > 0)
+            {
+                cmd.CommandText = $@"
+                            SELECT COUNT(stud_id) 
+                            FROM Students JOIN Groups ON [group] = group_id
+                            WHERE [group_name] = '{group}' GROUP BY group_name"; 
+            }
+            else
+            {
+                cmd.CommandText = $@"
+                            SELECT COUNT(stud_id) 
+                            FROM Students JOIN Groups ON [group] = group_id";
+            }
+            lblStudCount.Text = $"Кол-во студентов: {Convert.ToInt32(cmd.ExecuteScalar()).ToString()}";
             connection.Close();
         }
 
@@ -77,6 +98,54 @@ namespace Academy
         {
             Schedule shedule = new Schedule();
             shedule.Show();
+        }
+
+        private void cbGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectStudents(cbGroup.SelectedItem.ToString().Trim());
+        }
+
+        private void buttoAdd2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddStudent add_student = new AddStudent();
+                LoadGroupsToComboBox(add_student.GroupCombo);
+                DialogResult result = add_student.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = connection;
+                    cmd.Parameters.Add("@last_name", add_student.FullName.Split(' ')[0]);
+                    cmd.Parameters.Add("@first_name", add_student.FullName.Split(' ')[1]);
+                    if (add_student.FullName.Split(' ').Length == 3)
+                        cmd.Parameters.Add("@middle_name", add_student.FullName.Split(' ')[2]);
+                    cmd.Parameters.Add("@birth_date", add_student.BirthDate.ToString("yyyy.MM.dd"));
+                    cmd.Parameters.Add("@group", add_student.Group);
+                    cmd.CommandText = @"
+                                IF NOT EXISTS
+                                (SELECT stud_id FROM Students WHERE last_name = @last_name AND first_name = @first_name AND middle_name = @middle_name)
+                                BEGIN
+                                INSERT INTO 
+                                Students(last_name, first_name, middle_name, birth_date, [group])
+                                VALUES (@last_name, @first_name, @middle_name, @birth_date, (SELECT group_id FROM Groups WHERE group_name = @group))
+                                END
+                                ";
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                    cbGroup.SelectedItem = add_student.Group;
+                    SelectStudents();
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(this, exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+            }
         }
     }
 }
