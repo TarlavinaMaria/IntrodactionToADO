@@ -38,8 +38,8 @@
             this.group_select = new System.Windows.Forms.ComboBox();
             this.buttonAddShedule = new System.Windows.Forms.Button();
             this.buttonExit_Shedule = new System.Windows.Forms.Button();
-            this.date_select = new System.Windows.Forms.TextBox();
             this.time_select = new System.Windows.Forms.TextBox();
+            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label2
@@ -131,13 +131,6 @@
             this.buttonExit_Shedule.UseVisualStyleBackColor = true;
             this.buttonExit_Shedule.Click += new System.EventHandler(this.buttonExit_Shedule_Click);
             // 
-            // date_select
-            // 
-            this.date_select.Location = new System.Drawing.Point(12, 106);
-            this.date_select.Name = "date_select";
-            this.date_select.Size = new System.Drawing.Size(339, 20);
-            this.date_select.TabIndex = 14;
-            // 
             // time_select
             // 
             this.time_select.Location = new System.Drawing.Point(12, 146);
@@ -145,13 +138,20 @@
             this.time_select.Size = new System.Drawing.Size(339, 20);
             this.time_select.TabIndex = 15;
             // 
+            // dateTimePickerDate
+            // 
+            this.dateTimePickerDate.Location = new System.Drawing.Point(15, 106);
+            this.dateTimePickerDate.Name = "dateTimePickerDate";
+            this.dateTimePickerDate.Size = new System.Drawing.Size(336, 20);
+            this.dateTimePickerDate.TabIndex = 26;
+            // 
             // Schedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(367, 269);
+            this.Controls.Add(this.dateTimePickerDate);
             this.Controls.Add(this.time_select);
-            this.Controls.Add(this.date_select);
             this.Controls.Add(this.buttonExit_Shedule);
             this.Controls.Add(this.buttonAddShedule);
             this.Controls.Add(this.label4);
@@ -180,7 +180,7 @@
         private System.Windows.Forms.ComboBox group_select;
         private System.Windows.Forms.Button buttonAddShedule;
         private System.Windows.Forms.Button buttonExit_Shedule;
-        private System.Windows.Forms.TextBox date_select;
         private System.Windows.Forms.TextBox time_select;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDate;
     }
 }
