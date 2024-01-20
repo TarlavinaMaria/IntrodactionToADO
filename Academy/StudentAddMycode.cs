@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace Academy
 {
-    public partial class StudentAdd : Form
+    public partial class StudentAddMycode : Form
     {
         string connectionString;
         SqlConnection connection;
         SqlDataReader reader;
         DataTable table;
-        public StudentAdd()
+        public StudentAddMycode()
         {
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;

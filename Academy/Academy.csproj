@@ -73,11 +73,11 @@
     <Compile Include="SelectStudent.Designer.cs">
       <DependentUpon>SelectStudent.cs</DependentUpon>
     </Compile>
-    <Compile Include="StudentAdd.cs">
+    <Compile Include="StudentAddMycode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StudentAdd.Designer.cs">
-      <DependentUpon>StudentAdd.cs</DependentUpon>
+    <Compile Include="StudentAddMycode.Designer.cs">
+      <DependentUpon>StudentAddMycode.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Academy.resx">
       <DependentUpon>Academy.cs</DependentUpon>
@@ -97,8 +97,8 @@
     <EmbeddedResource Include="Schedule.resx">
       <DependentUpon>Schedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StudentAdd.resx">
-      <DependentUpon>StudentAdd.cs</DependentUpon>
+    <EmbeddedResource Include="StudentAddMycode.resx">
+      <DependentUpon>StudentAddMycode.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

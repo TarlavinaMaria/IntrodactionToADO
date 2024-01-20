@@ -31,7 +31,7 @@
             this.buttonAddShedule = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageStudents = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblStudCountSpec = new System.Windows.Forms.Label();
             this.comboBoxCountSpecialization = new System.Windows.Forms.ComboBox();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.richTextBoxSearchStudent = new System.Windows.Forms.RichTextBox();
@@ -73,7 +73,7 @@
             this.tabPageStudents.Controls.Add(this.label4);
             this.tabPageStudents.Controls.Add(this.label3);
             this.tabPageStudents.Controls.Add(this.label2);
-            this.tabPageStudents.Controls.Add(this.label1);
+            this.tabPageStudents.Controls.Add(this.lblStudCountSpec);
             this.tabPageStudents.Controls.Add(this.comboBoxCountSpecialization);
             this.tabPageStudents.Controls.Add(this.buttonAddShedule);
             this.tabPageStudents.Controls.Add(this.buttonSearch);
@@ -90,14 +90,14 @@
             this.tabPageStudents.Text = "Студенты";
             this.tabPageStudents.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lblStudCountSpec
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(551, 118);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Кол-во студентов: ";
+            this.lblStudCountSpec.AutoSize = true;
+            this.lblStudCountSpec.Location = new System.Drawing.Point(551, 118);
+            this.lblStudCountSpec.Name = "lblStudCountSpec";
+            this.lblStudCountSpec.Size = new System.Drawing.Size(101, 13);
+            this.lblStudCountSpec.TabIndex = 8;
+            this.lblStudCountSpec.Text = "Кол-во студентов: ";
             // 
             // comboBoxCountSpecialization
             // 
@@ -227,7 +227,7 @@
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.RichTextBox richTextBoxSearchStudent;
         private System.Windows.Forms.ComboBox comboBoxCountSpecialization;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblStudCountSpec;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;

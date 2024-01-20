@@ -27,6 +27,8 @@ namespace Academy
             connection = new SqlConnection(connectionString);
             LoadGroupsToComboBox(cbGroup);
             SelectStudents();
+            LoadSpecialization();
+            SelectStudentsSpec();
         }
         public void LoadGroupsToComboBox(System.Windows.Forms.ComboBox comboBox)
         {
@@ -37,6 +39,19 @@ namespace Academy
             while (reader.Read())
             {
                 comboBox.Items.Add(reader[0]);
+            }
+            reader.Close();
+            connection.Close();
+        }
+        public void LoadSpecialization()
+        {
+            string commandLine = @"SELECT direction_name FROM Directions";
+            SqlCommand cmd = new SqlCommand(commandLine, connection);
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                comboBoxCountSpecialization.Items.Add(reader[0]);
             }
             reader.Close();
             connection.Close();
@@ -87,10 +102,52 @@ namespace Academy
             lblStudCount.Text = $"Кол-во студентов: {Convert.ToInt32(cmd.ExecuteScalar()).ToString()}";
             connection.Close();
         }
+        void SelectStudentsSpec(string specialities = "") 
+        {
+            try
+            {
+                specialities = comboBoxCountSpecialization.SelectedItem.ToString();
+                connection.Open();
+                string commandLine;
+                if (specialities.Length > 0) 
+                {
+                    commandLine = $@"
+                                SELECT COUNT(stud_id) 
+                                FROM Students JOIN Groups ON [group] = group_id 
+                                JOIN Directions ON direction = direction_id
+                                WHERE direction_name = '{specialities}'
+                                GROUP BY direction_id
+                                ";
+                }
+                else
+                {
+                    commandLine = $@"
+                                SELECT COUNT(stud_id) 
+                                FROM Students JOIN Groups ON [group] = group_id 
+                                JOIN Directions ON direction = direction_id
+                                
+                                ";
+                }
+                SqlCommand cmd = new SqlCommand(commandLine, connection);
+                int count = (int)cmd.ExecuteScalar();
+                lblStudCountSpec.Text = "Количество студентов на выбранной специальности: " + count.ToString();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(this, exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+                if (reader != null) reader.Close();
 
+            }
+
+        }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            StudentAdd studentAdd = new StudentAdd();
+            StudentAddMycode studentAdd = new StudentAddMycode();
             studentAdd.Show();
         }
 

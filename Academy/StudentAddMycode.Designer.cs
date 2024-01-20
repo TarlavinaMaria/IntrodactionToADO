@@ -1,6 +1,6 @@
 ﻿namespace Academy
 {
-    partial class StudentAdd
+    partial class StudentAddMycode
     {
         /// <summary>
         /// Required designer variable.
