@@ -40,6 +40,8 @@
             this.buttonExit_Shedule = new System.Windows.Forms.Button();
             this.time_select = new System.Windows.Forms.TextBox();
             this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
+            this.dgvSchedule = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -145,11 +147,21 @@
             this.dateTimePickerDate.Size = new System.Drawing.Size(336, 20);
             this.dateTimePickerDate.TabIndex = 26;
             // 
+            // dgvSchedule
+            // 
+            this.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSchedule.Location = new System.Drawing.Point(379, 25);
+            this.dgvSchedule.Name = "dgvSchedule";
+            this.dgvSchedule.Size = new System.Drawing.Size(561, 232);
+            this.dgvSchedule.TabIndex = 27;
+            this.dgvSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
             // Schedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 269);
+            this.ClientSize = new System.Drawing.Size(952, 269);
+            this.Controls.Add(this.dgvSchedule);
             this.Controls.Add(this.dateTimePickerDate);
             this.Controls.Add(this.time_select);
             this.Controls.Add(this.buttonExit_Shedule);
@@ -164,6 +176,7 @@
             this.Controls.Add(this.discipline_select);
             this.Name = "Schedule";
             this.Text = "Shedule";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +195,6 @@
         private System.Windows.Forms.Button buttonExit_Shedule;
         private System.Windows.Forms.TextBox time_select;
         private System.Windows.Forms.DateTimePicker dateTimePickerDate;
+        private System.Windows.Forms.DataGridView dgvSchedule;
     }
 }

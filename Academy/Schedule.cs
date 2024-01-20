@@ -30,6 +30,7 @@ namespace Academy
             Load_discipline_select();
             Load_teacher_select();
             Load_group_select();
+            LoadSchedule();
         }
         void Load_discipline_select()
         {
@@ -82,7 +83,7 @@ namespace Academy
                 
                 connection.Open();
                 string discipline = discipline_select.SelectedItem.ToString();
-                string group = discipline_select.SelectedItem.ToString();
+                string group = group_select.SelectedItem.ToString();
      
                 string last_name = teacher_select.Text.Split(' ')[0];
                 string first_name = teacher_select.Text.Split(' ')[1];
@@ -115,7 +116,38 @@ namespace Academy
                 if (reader != null) reader.Close();
                 
             }
+        }
 
+        void LoadSchedule()
+        {
+            string commandLine = @"SELECT " +
+                "discipline_name AS 'Дисциплина', " +
+                "group_name AS 'Группа'," +
+                "[date] AS 'Дата'," +
+                "[time] AS 'Время'," +
+                "last_name + ' ' + first_name + ' ' + middle_name AS 'Преподаватель'" +
+                "FROM Schedule, Groups, Disciplines, Teachers" +
+                " WHERE discipline = discipline_id AND [group] = group_id AND teacher = teacher_id";
+            SqlCommand cmd = new SqlCommand(commandLine, connection);
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            table = new DataTable();
+            for (int i = 0; i < reader.FieldCount; i++) table.Columns.Add(reader.GetName(i));
+            while (reader.Read())
+            {
+                DataRow row = table.NewRow();
+                for (int i = 0; i < reader.FieldCount; i++) row[i] = reader[i];
+                row["Дата"] = Convert.ToDateTime(reader["Дата"]).ToString("yyyy.MM.dd");
+                table.Rows.Add(row);
+            }
+            dgvSchedule.DataSource = table;
+
+            reader.Close();
+            connection.Close();
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }
