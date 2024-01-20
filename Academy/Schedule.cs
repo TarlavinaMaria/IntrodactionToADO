@@ -80,8 +80,7 @@ namespace Academy
         {
             try
             {
-                
-                connection.Open();
+                 connection.Open();
                 string discipline = discipline_select.SelectedItem.ToString();
                 string group = group_select.SelectedItem.ToString();
      
@@ -103,6 +102,7 @@ namespace Academy
                 command.Parameters.AddWithValue("@teacher", teacher);
                 command.Parameters.AddWithValue("@start_date", start_date);
                 command.Parameters.AddWithValue("@time", time);
+               
                 command.ExecuteNonQuery();
                 MessageBox.Show(this, "Успешно добавлено расписание");
             }
@@ -116,6 +116,7 @@ namespace Academy
                 if (reader != null) reader.Close();
                 
             }
+            LoadSchedule();
         }
 
         void LoadSchedule()

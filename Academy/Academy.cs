@@ -147,5 +147,42 @@ namespace Academy
                 if (connection != null) connection.Close();
             }
         }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+                try
+                {
+                    string fullName = richTextBoxSearchStudent.Text;
+                    string last_name = richTextBoxSearchStudent.Text.Split(' ')[0];
+                    string first_name = richTextBoxSearchStudent.Text.Split(' ')[1];
+                    string middle_name = richTextBoxSearchStudent.Text.Split(' ')[2];
+                    
+                    string commandStudent = $"SELECT last_name, first_name, middle_name, birth_date, [group] FROM Students WHERE last_name = '{last_name}' AND first_name = '{first_name}' AND middle_name = '{middle_name}'";
+                    SqlCommand cmd = new SqlCommand(commandStudent, connection);
+                    
+                    connection.Open();
+                    reader = cmd.ExecuteReader();
+
+                    table = new DataTable();
+                    for (int i = 0; i < reader.FieldCount; i++) table.Columns.Add(reader.GetName(i));
+                    while (reader.Read())
+                    {
+                        DataRow row = table.NewRow();
+                        for (int i = 0; i < reader.FieldCount; i++) row[i] = reader[i];
+                        table.Rows.Add(row);
+                    }
+                    dgvStudents.DataSource = table;
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(this, exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    if (reader != null) reader.Close();
+                    if (connection != null) connection.Close();
+                }
+        }
     }
+    
 }

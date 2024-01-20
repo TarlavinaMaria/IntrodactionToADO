@@ -67,6 +67,12 @@
     <Compile Include="Schedule.Designer.cs">
       <DependentUpon>Schedule.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectStudent.Designer.cs">
+      <DependentUpon>SelectStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="StudentAdd.cs">
       <SubType>Form</SubType>
     </Compile>

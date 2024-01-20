@@ -31,15 +31,18 @@
             this.buttonAddShedule = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageStudents = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxCountSpecialization = new System.Windows.Forms.ComboBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.richTextBoxSearchStudent = new System.Windows.Forms.RichTextBox();
             this.lblStudCount = new System.Windows.Forms.Label();
             this.buttoAdd2 = new System.Windows.Forms.Button();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.cbGroup = new System.Windows.Forms.ComboBox();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
-            this.richTextBoxSearchStudent = new System.Windows.Forms.RichTextBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
-            this.comboBoxCountSpecialization = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -47,7 +50,7 @@
             // 
             // buttonAddShedule
             // 
-            this.buttonAddShedule.Location = new System.Drawing.Point(798, 9);
+            this.buttonAddShedule.Location = new System.Drawing.Point(797, 22);
             this.buttonAddShedule.Name = "buttonAddShedule";
             this.buttonAddShedule.Size = new System.Drawing.Size(129, 21);
             this.buttonAddShedule.TabIndex = 3;
@@ -67,6 +70,9 @@
             // 
             // tabPageStudents
             // 
+            this.tabPageStudents.Controls.Add(this.label4);
+            this.tabPageStudents.Controls.Add(this.label3);
+            this.tabPageStudents.Controls.Add(this.label2);
             this.tabPageStudents.Controls.Add(this.label1);
             this.tabPageStudents.Controls.Add(this.comboBoxCountSpecialization);
             this.tabPageStudents.Controls.Add(this.buttonAddShedule);
@@ -84,10 +90,45 @@
             this.tabPageStudents.Text = "Студенты";
             this.tabPageStudents.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(551, 118);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(101, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Кол-во студентов: ";
+            // 
+            // comboBoxCountSpecialization
+            // 
+            this.comboBoxCountSpecialization.FormattingEnabled = true;
+            this.comboBoxCountSpecialization.Location = new System.Drawing.Point(3, 118);
+            this.comboBoxCountSpecialization.Name = "comboBoxCountSpecialization";
+            this.comboBoxCountSpecialization.Size = new System.Drawing.Size(529, 21);
+            this.comboBoxCountSpecialization.TabIndex = 7;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(544, 70);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(146, 23);
+            this.buttonSearch.TabIndex = 6;
+            this.buttonSearch.Text = "Поиск студента";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // richTextBoxSearchStudent
+            // 
+            this.richTextBoxSearchStudent.Location = new System.Drawing.Point(3, 72);
+            this.richTextBoxSearchStudent.Name = "richTextBoxSearchStudent";
+            this.richTextBoxSearchStudent.Size = new System.Drawing.Size(529, 23);
+            this.richTextBoxSearchStudent.TabIndex = 5;
+            this.richTextBoxSearchStudent.Text = "";
+            // 
             // lblStudCount
             // 
             this.lblStudCount.AutoSize = true;
-            this.lblStudCount.Location = new System.Drawing.Point(542, 10);
+            this.lblStudCount.Location = new System.Drawing.Point(541, 23);
             this.lblStudCount.Name = "lblStudCount";
             this.lblStudCount.Size = new System.Drawing.Size(101, 13);
             this.lblStudCount.TabIndex = 4;
@@ -96,7 +137,7 @@
             // buttoAdd2
             // 
             this.buttoAdd2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttoAdd2.Location = new System.Drawing.Point(662, 8);
+            this.buttoAdd2.Location = new System.Drawing.Point(661, 21);
             this.buttoAdd2.Name = "buttoAdd2";
             this.buttoAdd2.Size = new System.Drawing.Size(130, 23);
             this.buttoAdd2.TabIndex = 3;
@@ -107,15 +148,15 @@
             // dgvStudents
             // 
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStudents.Location = new System.Drawing.Point(6, 110);
+            this.dgvStudents.Location = new System.Drawing.Point(6, 145);
             this.dgvStudents.Name = "dgvStudents";
-            this.dgvStudents.Size = new System.Drawing.Size(930, 390);
+            this.dgvStudents.Size = new System.Drawing.Size(930, 355);
             this.dgvStudents.TabIndex = 1;
             // 
             // cbGroup
             // 
             this.cbGroup.FormattingEnabled = true;
-            this.cbGroup.Location = new System.Drawing.Point(7, 7);
+            this.cbGroup.Location = new System.Drawing.Point(6, 20);
             this.cbGroup.Name = "cbGroup";
             this.cbGroup.Size = new System.Drawing.Size(529, 21);
             this.cbGroup.TabIndex = 0;
@@ -126,44 +167,37 @@
             this.tabPageTeachers.Location = new System.Drawing.Point(4, 22);
             this.tabPageTeachers.Name = "tabPageTeachers";
             this.tabPageTeachers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTeachers.Size = new System.Drawing.Size(767, 363);
+            this.tabPageTeachers.Size = new System.Drawing.Size(943, 506);
             this.tabPageTeachers.TabIndex = 1;
             this.tabPageTeachers.Text = "Преподаватели";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
             // 
-            // richTextBoxSearchStudent
+            // label2
             // 
-            this.richTextBoxSearchStudent.Location = new System.Drawing.Point(7, 35);
-            this.richTextBoxSearchStudent.Name = "richTextBoxSearchStudent";
-            this.richTextBoxSearchStudent.Size = new System.Drawing.Size(529, 23);
-            this.richTextBoxSearchStudent.TabIndex = 5;
-            this.richTextBoxSearchStudent.Text = "";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Выбор группы: ";
             // 
-            // buttonSearch
+            // label3
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(542, 33);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(146, 23);
-            this.buttonSearch.TabIndex = 6;
-            this.buttonSearch.Text = "Поиск студента";
-            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(186, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Выбор группы для специальности: ";
             // 
-            // comboBoxCountSpecialization
+            // label4
             // 
-            this.comboBoxCountSpecialization.FormattingEnabled = true;
-            this.comboBoxCountSpecialization.Location = new System.Drawing.Point(7, 65);
-            this.comboBoxCountSpecialization.Name = "comboBoxCountSpecialization";
-            this.comboBoxCountSpecialization.Size = new System.Drawing.Size(529, 21);
-            this.comboBoxCountSpecialization.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(543, 71);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Кол-во студентов: ";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Поиск студента:";
             // 
             // Form1
             // 
@@ -194,6 +228,9 @@
         private System.Windows.Forms.RichTextBox richTextBoxSearchStudent;
         private System.Windows.Forms.ComboBox comboBoxCountSpecialization;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
     }
 }
 
