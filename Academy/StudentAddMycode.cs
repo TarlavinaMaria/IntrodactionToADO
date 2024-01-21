@@ -24,6 +24,7 @@ namespace Academy
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             connection = new SqlConnection(connectionString);
         }
+        
 
         private void Add_Click(object sender, EventArgs e)
         {

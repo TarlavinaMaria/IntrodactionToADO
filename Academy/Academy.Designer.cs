@@ -31,8 +31,11 @@
             this.buttonAddShedule = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageStudents = new System.Windows.Forms.TabPage();
+            this.cbSpecSelect = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblStudCountSpec = new System.Windows.Forms.Label();
-            this.comboBoxCountSpecialization = new System.Windows.Forms.ComboBox();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.richTextBoxSearchStudent = new System.Windows.Forms.RichTextBox();
             this.lblStudCount = new System.Windows.Forms.Label();
@@ -40,9 +43,7 @@
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.cbGroup = new System.Windows.Forms.ComboBox();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -70,11 +71,12 @@
             // 
             // tabPageStudents
             // 
+            this.tabPageStudents.Controls.Add(this.button1);
+            this.tabPageStudents.Controls.Add(this.cbSpecSelect);
             this.tabPageStudents.Controls.Add(this.label4);
             this.tabPageStudents.Controls.Add(this.label3);
             this.tabPageStudents.Controls.Add(this.label2);
             this.tabPageStudents.Controls.Add(this.lblStudCountSpec);
-            this.tabPageStudents.Controls.Add(this.comboBoxCountSpecialization);
             this.tabPageStudents.Controls.Add(this.buttonAddShedule);
             this.tabPageStudents.Controls.Add(this.buttonSearch);
             this.tabPageStudents.Controls.Add(this.richTextBoxSearchStudent);
@@ -90,6 +92,41 @@
             this.tabPageStudents.Text = "Студенты";
             this.tabPageStudents.UseVisualStyleBackColor = true;
             // 
+            // cbSpecSelect
+            // 
+            this.cbSpecSelect.FormattingEnabled = true;
+            this.cbSpecSelect.Location = new System.Drawing.Point(7, 118);
+            this.cbSpecSelect.Name = "cbSpecSelect";
+            this.cbSpecSelect.Size = new System.Drawing.Size(525, 21);
+            this.cbSpecSelect.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Поиск студента:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(186, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Выбор группы для специальности: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Выбор группы: ";
+            // 
             // lblStudCountSpec
             // 
             this.lblStudCountSpec.AutoSize = true;
@@ -98,14 +135,6 @@
             this.lblStudCountSpec.Size = new System.Drawing.Size(101, 13);
             this.lblStudCountSpec.TabIndex = 8;
             this.lblStudCountSpec.Text = "Кол-во студентов: ";
-            // 
-            // comboBoxCountSpecialization
-            // 
-            this.comboBoxCountSpecialization.FormattingEnabled = true;
-            this.comboBoxCountSpecialization.Location = new System.Drawing.Point(3, 118);
-            this.comboBoxCountSpecialization.Name = "comboBoxCountSpecialization";
-            this.comboBoxCountSpecialization.Size = new System.Drawing.Size(529, 21);
-            this.comboBoxCountSpecialization.TabIndex = 7;
             // 
             // buttonSearch
             // 
@@ -172,32 +201,15 @@
             this.tabPageTeachers.Text = "Преподаватели";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // button1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Выбор группы: ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(186, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Выбор группы для специальности: ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Поиск студента:";
+            this.button1.Location = new System.Drawing.Point(661, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Добавить группу";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -226,11 +238,12 @@
         private System.Windows.Forms.Label lblStudCount;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.RichTextBox richTextBoxSearchStudent;
-        private System.Windows.Forms.ComboBox comboBoxCountSpecialization;
         private System.Windows.Forms.Label lblStudCountSpec;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbSpecSelect;
+        private System.Windows.Forms.Button button1;
     }
 }
 

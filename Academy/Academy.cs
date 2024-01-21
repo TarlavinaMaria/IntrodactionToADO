@@ -27,7 +27,7 @@ namespace Academy
             connection = new SqlConnection(connectionString);
             LoadGroupsToComboBox(cbGroup);
             SelectStudents();
-            LoadSpecialization();
+            LoadSpecialization(cbSpecSelect);
             SelectStudentsSpec();
         }
         public void LoadGroupsToComboBox(System.Windows.Forms.ComboBox comboBox)
@@ -43,7 +43,7 @@ namespace Academy
             reader.Close();
             connection.Close();
         }
-        public void LoadSpecialization()
+        public void LoadSpecialization(System.Windows.Forms.ComboBox comboBox)
         {
             string commandLine = @"SELECT direction_name FROM Directions";
             SqlCommand cmd = new SqlCommand(commandLine, connection);
@@ -51,10 +51,14 @@ namespace Academy
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                comboBoxCountSpecialization.Items.Add(reader[0]);
+                comboBox.Items.Add(reader[0]);
             }
             reader.Close();
             connection.Close();
+            if (cbSpecSelect.Items.Count > 0)
+            {
+                cbSpecSelect.SelectedIndex = 0; 
+            }
         }
         void SelectStudents(string group = "")
         {
@@ -106,8 +110,8 @@ namespace Academy
         {
             try
             {
-                specialities = comboBoxCountSpecialization.SelectedItem.ToString();
                 connection.Open();
+                specialities = cbSpecSelect.SelectedItem.ToString();
                 string commandLine;
                 if (specialities.Length > 0) 
                 {
@@ -116,17 +120,14 @@ namespace Academy
                                 FROM Students JOIN Groups ON [group] = group_id 
                                 JOIN Directions ON direction = direction_id
                                 WHERE direction_name = '{specialities}'
-                                GROUP BY direction_id
-                                ";
+                                GROUP BY direction_id";
                 }
                 else
                 {
                     commandLine = $@"
                                 SELECT COUNT(stud_id) 
                                 FROM Students JOIN Groups ON [group] = group_id 
-                                JOIN Directions ON direction = direction_id
-                                
-                                ";
+                                JOIN Directions ON direction = direction_id";
                 }
                 SqlCommand cmd = new SqlCommand(commandLine, connection);
                 int count = (int)cmd.ExecuteScalar();
@@ -239,6 +240,17 @@ namespace Academy
                     if (reader != null) reader.Close();
                     if (connection != null) connection.Close();
                 }
+        }
+
+        private void comboBoxCountSpecialization_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectStudentsSpec(cbSpecSelect.SelectedItem.ToString());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddGroup addGroup = new AddGroup();
+            addGroup.Show();
         }
     }
     
