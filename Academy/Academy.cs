@@ -252,6 +252,12 @@ namespace Academy
             AddGroup addGroup = new AddGroup();
             addGroup.Show();
         }
+
+        private void btChangeGroup_Click(object sender, EventArgs e)
+        {
+            ChangeGroup changeGroup = new ChangeGroup();
+            changeGroup.Show();
+        }
     }
     
 }

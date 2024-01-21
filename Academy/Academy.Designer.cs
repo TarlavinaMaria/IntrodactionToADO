@@ -31,6 +31,7 @@
             this.buttonAddShedule = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageStudents = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.cbSpecSelect = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,7 +44,7 @@
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.cbGroup = new System.Windows.Forms.ComboBox();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btChangeGroup = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -71,6 +72,7 @@
             // 
             // tabPageStudents
             // 
+            this.tabPageStudents.Controls.Add(this.btChangeGroup);
             this.tabPageStudents.Controls.Add(this.button1);
             this.tabPageStudents.Controls.Add(this.cbSpecSelect);
             this.tabPageStudents.Controls.Add(this.label4);
@@ -91,6 +93,16 @@
             this.tabPageStudents.TabIndex = 0;
             this.tabPageStudents.Text = "Студенты";
             this.tabPageStudents.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(661, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Добавить группу";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cbSpecSelect
             // 
@@ -201,15 +213,15 @@
             this.tabPageTeachers.Text = "Преподаватели";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btChangeGroup
             // 
-            this.button1.Location = new System.Drawing.Point(661, 46);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Добавить группу";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btChangeGroup.Location = new System.Drawing.Point(798, 46);
+            this.btChangeGroup.Name = "btChangeGroup";
+            this.btChangeGroup.Size = new System.Drawing.Size(128, 23);
+            this.btChangeGroup.TabIndex = 14;
+            this.btChangeGroup.Text = "Смена группы";
+            this.btChangeGroup.UseVisualStyleBackColor = true;
+            this.btChangeGroup.Click += new System.EventHandler(this.btChangeGroup_Click);
             // 
             // Form1
             // 
@@ -244,6 +256,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbSpecSelect;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btChangeGroup;
     }
 }
 
