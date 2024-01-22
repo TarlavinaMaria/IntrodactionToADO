@@ -111,6 +111,7 @@ namespace Academy
             try
             {
                 connection.Open();
+                //?????????????????????????????????????????????????????????????????
                 specialities = cbSpecSelect.SelectedItem.ToString();
                 string commandLine;
                 if (specialities.Length > 0) 
@@ -257,6 +258,19 @@ namespace Academy
         {
             ChangeGroup changeGroup = new ChangeGroup();
             changeGroup.Show();
+        }
+
+        private void dgvStudents_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                // Получаем значение ячейки, на которую был сделан двойной щелчок
+                string cellValue = dgvStudents.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                StudentInfo studentInfo = new StudentInfo();
+                studentInfo.CellValue = cellValue;
+                studentInfo.ShowDialog();
+                
+            }
         }
     }
     

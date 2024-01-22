@@ -85,6 +85,12 @@
     <Compile Include="StudentAddMycode.Designer.cs">
       <DependentUpon>StudentAddMycode.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudentInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentInfo.Designer.cs">
+      <DependentUpon>StudentInfo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Academy.resx">
       <DependentUpon>Academy.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StudentAddMycode.resx">
       <DependentUpon>StudentAddMycode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentInfo.resx">
+      <DependentUpon>StudentInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

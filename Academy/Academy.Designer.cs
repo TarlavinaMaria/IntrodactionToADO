@@ -31,6 +31,7 @@
             this.buttonAddShedule = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageStudents = new System.Windows.Forms.TabPage();
+            this.btChangeGroup = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.cbSpecSelect = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.cbGroup = new System.Windows.Forms.ComboBox();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
-            this.btChangeGroup = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -93,6 +93,16 @@
             this.tabPageStudents.TabIndex = 0;
             this.tabPageStudents.Text = "Студенты";
             this.tabPageStudents.UseVisualStyleBackColor = true;
+            // 
+            // btChangeGroup
+            // 
+            this.btChangeGroup.Location = new System.Drawing.Point(798, 46);
+            this.btChangeGroup.Name = "btChangeGroup";
+            this.btChangeGroup.Size = new System.Drawing.Size(128, 23);
+            this.btChangeGroup.TabIndex = 14;
+            this.btChangeGroup.Text = "Смена группы";
+            this.btChangeGroup.UseVisualStyleBackColor = true;
+            this.btChangeGroup.Click += new System.EventHandler(this.btChangeGroup_Click);
             // 
             // button1
             // 
@@ -191,8 +201,10 @@
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStudents.Location = new System.Drawing.Point(6, 145);
             this.dgvStudents.Name = "dgvStudents";
+            this.dgvStudents.ReadOnly = true;
             this.dgvStudents.Size = new System.Drawing.Size(930, 355);
             this.dgvStudents.TabIndex = 1;
+            this.dgvStudents.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudents_CellDoubleClick);
             // 
             // cbGroup
             // 
@@ -212,16 +224,6 @@
             this.tabPageTeachers.TabIndex = 1;
             this.tabPageTeachers.Text = "Преподаватели";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
-            // 
-            // btChangeGroup
-            // 
-            this.btChangeGroup.Location = new System.Drawing.Point(798, 46);
-            this.btChangeGroup.Name = "btChangeGroup";
-            this.btChangeGroup.Size = new System.Drawing.Size(128, 23);
-            this.btChangeGroup.TabIndex = 14;
-            this.btChangeGroup.Text = "Смена группы";
-            this.btChangeGroup.UseVisualStyleBackColor = true;
-            this.btChangeGroup.Click += new System.EventHandler(this.btChangeGroup_Click);
             // 
             // Form1
             // 
