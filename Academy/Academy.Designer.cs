@@ -33,7 +33,7 @@
             this.tabPageStudents = new System.Windows.Forms.TabPage();
             this.btChangeGroup = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.cbSpecSelect = new System.Windows.Forms.ComboBox();
+            this.cbDirection = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@
             // 
             this.tabPageStudents.Controls.Add(this.btChangeGroup);
             this.tabPageStudents.Controls.Add(this.button1);
-            this.tabPageStudents.Controls.Add(this.cbSpecSelect);
+            this.tabPageStudents.Controls.Add(this.cbDirection);
             this.tabPageStudents.Controls.Add(this.label4);
             this.tabPageStudents.Controls.Add(this.label3);
             this.tabPageStudents.Controls.Add(this.label2);
@@ -114,13 +114,14 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // cbSpecSelect
+            // cbDirection
             // 
-            this.cbSpecSelect.FormattingEnabled = true;
-            this.cbSpecSelect.Location = new System.Drawing.Point(7, 118);
-            this.cbSpecSelect.Name = "cbSpecSelect";
-            this.cbSpecSelect.Size = new System.Drawing.Size(525, 21);
-            this.cbSpecSelect.TabIndex = 12;
+            this.cbDirection.FormattingEnabled = true;
+            this.cbDirection.Location = new System.Drawing.Point(7, 118);
+            this.cbDirection.Name = "cbDirection";
+            this.cbDirection.Size = new System.Drawing.Size(525, 21);
+            this.cbDirection.TabIndex = 12;
+            this.cbDirection.SelectedIndexChanged += new System.EventHandler(this.cbDirection_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -256,7 +257,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbSpecSelect;
+        private System.Windows.Forms.ComboBox cbDirection;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btChangeGroup;
     }
