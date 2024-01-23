@@ -28,6 +28,7 @@ namespace Academy
             LoadGroupsToComboBox(cbGroup);
             SelectStudents();
             LoadDirectionsToComboBox();
+            rbStudent.Checked = true;
         }
         public void LoadGroupsToComboBox(System.Windows.Forms.ComboBox comboBox)
         {
@@ -226,14 +227,31 @@ namespace Academy
 
         private void cbDirection_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dgvStudents.DataSource = null;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connection;
-            cmd.Parameters.Add("@direction", cbDirection.SelectedItem.ToString());
-            cmd.CommandText = @"SELECT last_name, first_name, middle_name, birth_date, group_name, direction_name
+            if(cbDirection.SelectedItem != null) cmd.Parameters.Add("@direction", cbDirection.SelectedItem.ToString());
+            if (rbStudent.Checked)
+            {
+                cmd.CommandText = @"SELECT last_name, first_name, middle_name, birth_date, group_name, direction_name
             FROM Students 
             JOIN Groups ON [group] = group_id
-            JOIN Directions ON direction = direction_id
-            WHERE direction_name = @direction";
+            JOIN Directions ON direction = direction_id"; 
+                if(cbDirection.SelectedItem != null)
+                {
+                    cmd.CommandText += " WHERE direction_name = @direction";
+                }
+            }
+            if(rbGroups.Checked)
+            {
+                cmd.CommandText = @"SELECT group_name, direction_name
+            FROM Groups 
+            JOIN Directions ON direction = direction_id";
+                if(cbDirection.SelectedItem != null)
+                {
+                    cmd.CommandText += " WHERE direction_name = @direction";
+                }
+            }
             connection.Open();
             reader = cmd.ExecuteReader();
             table = new DataTable();
@@ -249,7 +267,25 @@ namespace Academy
             }
             dgvStudents.DataSource = table;
             reader.Close();
+            int studebtsCount = dgvStudents.RowCount - 1;
+            lblStudCount.Text = $"Кол-во студентов: {studebtsCount}";
             connection.Close();
+        }
+
+        private void rbGroups_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbGroups.Checked) 
+            {
+                cbDirection_SelectedIndexChanged(sender, e);
+            }
+        }
+
+        private void rbStudent_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbStudent.Checked) 
+            {
+                cbDirection_SelectedIndexChanged(sender, e);
+            }
         }
     }
     
