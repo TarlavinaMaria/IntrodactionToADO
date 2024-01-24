@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Academy
 {
@@ -29,6 +30,62 @@ namespace Academy
             SelectStudents();
             LoadDirectionsToComboBox();
             rbStudent.Checked = true;
+            LoadDataToComboBox(cbDirectionOnGroupTab, "Directions", "direction_name", "Выберите направление");
+        }
+        public void LoadDataToComboBox(System.Windows.Forms.ComboBox comboBox ,
+            string sourceTable, string sourceColumn, string invite = "Выберите значение")
+        {
+            string commandLine = $@"SELECT {sourceColumn} FROM {sourceTable}";
+            SqlCommand cmd = new SqlCommand(commandLine, connection);
+
+            //cmd.Connection = connection;
+            //cmd.Parameters.Add("@table_name", sourceTable);
+            //cmd.Parameters.Add("@column_name", sourceColumn);
+            //cmd.CommandText = @"SELECT @column_name FROM @table_name";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            comboBox.Items.Add(invite);
+            while (reader.Read())
+            {
+                comboBox.Items.Add(reader[0]);
+            }
+            comboBox.SelectedItem = invite;
+            reader.Close();
+            connection.Close();
+        }
+        public void SelectDataFromTable(System.Windows.Forms.DataGridView dataGridView,
+            string tableName, params string[] columns)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connection;
+            for (int i = 0; i < columns.Length; i++)
+            {
+                cmd.Parameters.Add($"column_{i}", columns[i]);
+                cmd.CommandText += $"column_{i}";
+                cmd.CommandText += i == columns.Length - 1 ? " " : ", ";
+            }
+
+            cmd.CommandText += $"FROM {tableName}";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            table = new DataTable();
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                table.Columns.Add(reader.GetName(i));
+            }
+            while(reader.Read())
+            {
+                DataRow row = table.NewRow();
+                for(int i = 0; i <reader.FieldCount; i++)
+                {
+                    row[i] = reader[i];
+                }
+                table.Rows.Add(row);
+            }
+            dataGridViewGroups.DataSource = table;
+            reader.Close();
+            connection.Close();
+
         }
         public void LoadGroupsToComboBox(System.Windows.Forms.ComboBox comboBox)
         {

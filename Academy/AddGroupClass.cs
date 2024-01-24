@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,19 @@ namespace Academy
 {
     public partial class AddGroupClass : Form
     {
+        string connectionString;
+        SqlConnection connection;
+        SqlDataReader reader;
+        DataTable table;
         public AddGroupClass()
         {
             InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
+            connection = new SqlConnection(connectionString);
+        }
+        private void LoadComboBox(string sourceTable)
+        {
+
         }
     }
 }

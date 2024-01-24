@@ -34,8 +34,8 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.groupBoxDaysofWeek = new System.Windows.Forms.GroupBox();
             this.cbMon = new System.Windows.Forms.CheckBox();
-            this.checkBoxTew = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cbWed = new System.Windows.Forms.CheckBox();
+            this.cbTew = new System.Windows.Forms.CheckBox();
             this.groupBoxDaysofWeek.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,8 +77,8 @@
             // groupBoxDaysofWeek
             // 
             this.groupBoxDaysofWeek.Controls.Add(this.cbMon);
-            this.groupBoxDaysofWeek.Controls.Add(this.checkBox2);
-            this.groupBoxDaysofWeek.Controls.Add(this.checkBoxTew);
+            this.groupBoxDaysofWeek.Controls.Add(this.cbWed);
+            this.groupBoxDaysofWeek.Controls.Add(this.cbTew);
             this.groupBoxDaysofWeek.Location = new System.Drawing.Point(13, 111);
             this.groupBoxDaysofWeek.Name = "groupBoxDaysofWeek";
             this.groupBoxDaysofWeek.Size = new System.Drawing.Size(408, 104);
@@ -96,25 +96,25 @@
             this.cbMon.Text = "Понедельник";
             this.cbMon.UseVisualStyleBackColor = true;
             // 
-            // checkBoxTew
+            // cbWed
             // 
-            this.checkBoxTew.AutoSize = true;
-            this.checkBoxTew.Location = new System.Drawing.Point(6, 42);
-            this.checkBoxTew.Name = "checkBoxTew";
-            this.checkBoxTew.Size = new System.Drawing.Size(68, 17);
-            this.checkBoxTew.TabIndex = 5;
-            this.checkBoxTew.Text = "Вторник";
-            this.checkBoxTew.UseVisualStyleBackColor = true;
+            this.cbWed.AutoSize = true;
+            this.cbWed.Location = new System.Drawing.Point(6, 65);
+            this.cbWed.Name = "cbWed";
+            this.cbWed.Size = new System.Drawing.Size(57, 17);
+            this.cbWed.TabIndex = 6;
+            this.cbWed.Text = "Среда";
+            this.cbWed.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // cbTew
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(6, 65);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(94, 17);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "Понедельник";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cbTew.AutoSize = true;
+            this.cbTew.Location = new System.Drawing.Point(6, 42);
+            this.cbTew.Name = "cbTew";
+            this.cbTew.Size = new System.Drawing.Size(68, 17);
+            this.cbTew.TabIndex = 5;
+            this.cbTew.Text = "Вторник";
+            this.cbTew.UseVisualStyleBackColor = true;
             // 
             // AddGroupClass
             // 
@@ -143,7 +143,7 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.GroupBox groupBoxDaysofWeek;
         private System.Windows.Forms.CheckBox cbMon;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBoxTew;
+        private System.Windows.Forms.CheckBox cbWed;
+        private System.Windows.Forms.CheckBox cbTew;
     }
 }
