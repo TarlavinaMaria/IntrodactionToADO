@@ -49,23 +49,26 @@ namespace Academy
             {
                 comboBox.Items.Add(reader[0]);
             }
-            comboBox.SelectedItem = invite;
             reader.Close();
             connection.Close();
+            comboBox.SelectedItem = invite;
         }
         public void SelectDataFromTable(System.Windows.Forms.DataGridView dataGridView,
-            string tableName, params string[] columns)
+            string commandLine)
+            //string tableName, params string[] columns)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = connection;
-            for (int i = 0; i < columns.Length; i++)
-            {
-                cmd.Parameters.Add($"column_{i}", columns[i]);
-                cmd.CommandText += $"column_{i}";
-                cmd.CommandText += i == columns.Length - 1 ? " " : ", ";
-            }
+            //SqlCommand cmd = new SqlCommand();
+            //cmd.Connection = connection;
+            //cmd.CommandText = "SELECT ";
+            //for (int i = 0; i < columns.Length; i++)
+            //{
+            //    cmd.Parameters.Add($"{columns[i]}", columns[i]);
+            //    cmd.CommandText += $"{columns[i]}";
+            //    cmd.CommandText += i == columns.Length - 1 ? " " : ", ";
+            //}
 
-            cmd.CommandText += $"FROM {tableName}";
+            //cmd.CommandText += $"FROM {tableName}";
+            SqlCommand cmd = new SqlCommand(commandLine, connection);
             connection.Open();
             reader = cmd.ExecuteReader();
             table = new DataTable();
@@ -76,7 +79,7 @@ namespace Academy
             while(reader.Read())
             {
                 DataRow row = table.NewRow();
-                for(int i = 0; i <reader.FieldCount; i++)
+                for(int i = 0; i < reader.FieldCount; i++)
                 {
                     row[i] = reader[i];
                 }
@@ -217,6 +220,7 @@ namespace Academy
             finally
             {
                 if (connection != null) connection.Close();
+                if (reader != null) reader.Close();
             }
         }
 
@@ -350,6 +354,19 @@ namespace Academy
             {
                 cbDirection_SelectedIndexChanged(sender, e);
             }
+        }
+
+        private void cbDirectionOnGroupTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //SelectDataFromTable(dataGridViewGroups, "Groups", "group_name", "direction");   
+            string commandLine = $@"
+                                    SELECT group_name, direction_name 
+                                    FROM Groups JOIN Directions ON direction = direction_id
+                                    ";
+            if(cbDirectionOnGroupTab.SelectedIndex != 0)  
+               commandLine += $@"WHERE direction_name = '{cbDirectionOnGroupTab.SelectedItem}'";
+            SelectDataFromTable(dataGridViewGroups, commandLine);
+            lblGroupsCount.Text = $"Кол-во групп: {dataGridViewGroups.Rows.Count - 1}";
         }
     }
     

@@ -50,6 +50,7 @@
             this.dataGridViewGroups = new System.Windows.Forms.DataGridView();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
             this.cbDirectionOnGroupTab = new System.Windows.Forms.ComboBox();
+            this.lblGroupsCount = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -244,6 +245,7 @@
             // 
             // tabPageGroups
             // 
+            this.tabPageGroups.Controls.Add(this.lblGroupsCount);
             this.tabPageGroups.Controls.Add(this.cbDirectionOnGroupTab);
             this.tabPageGroups.Controls.Add(this.btnGroupAdd);
             this.tabPageGroups.Controls.Add(this.dataGridViewGroups);
@@ -289,6 +291,16 @@
             this.cbDirectionOnGroupTab.Name = "cbDirectionOnGroupTab";
             this.cbDirectionOnGroupTab.Size = new System.Drawing.Size(463, 21);
             this.cbDirectionOnGroupTab.TabIndex = 2;
+            this.cbDirectionOnGroupTab.SelectedIndexChanged += new System.EventHandler(this.cbDirectionOnGroupTab_SelectedIndexChanged);
+            // 
+            // lblGroupsCount
+            // 
+            this.lblGroupsCount.AutoSize = true;
+            this.lblGroupsCount.Location = new System.Drawing.Point(474, 11);
+            this.lblGroupsCount.Name = "lblGroupsCount";
+            this.lblGroupsCount.Size = new System.Drawing.Size(72, 13);
+            this.lblGroupsCount.TabIndex = 3;
+            this.lblGroupsCount.Text = "Кол-во групп";
             // 
             // Form1
             // 
@@ -303,6 +315,7 @@
             this.tabPageStudents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).EndInit();
             this.tabPageGroups.ResumeLayout(false);
+            this.tabPageGroups.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGroups)).EndInit();
             this.ResumeLayout(false);
 
@@ -331,6 +344,7 @@
         private System.Windows.Forms.DataGridView dataGridViewGroups;
         private System.Windows.Forms.Button btnGroupAdd;
         private System.Windows.Forms.ComboBox cbDirectionOnGroupTab;
+        private System.Windows.Forms.Label lblGroupsCount;
     }
 }
 
