@@ -84,7 +84,7 @@ namespace Academy
                 int count = (int)checkCommand.ExecuteScalar();
                 if (count > 0)
                 {
-                    Console.WriteLine("Запись уже существует.");
+                    MessageBox.Show(this, "Запись уже существует");
                     return;
                 }
 

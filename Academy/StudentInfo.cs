@@ -33,6 +33,7 @@ namespace Academy
             Load_Group(data);
             Load_Spec(data);
             Load_Attendance(data);
+            Load_Grade(data);
         }
         void Load_StudentInfo(string last_name)
         {
@@ -117,24 +118,38 @@ namespace Academy
             try
             {
                 connection.Open();
-                string count_all = "SELECT (CAST(COUNT(CASE WHEN present = 1 THEN 1 END) AS float) / COUNT(present)) * 100.0 AS AttendancePercentage" +
-                    " FROM Students, Attendance WHERE last_name = @last_name AND stud_id = student";
-                SqlCommand cmd = new SqlCommand(count_all, connection);
-                cmd.Parameters.AddWithValue("@last_name", last_name);
-                reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    double attendancePercentage = Convert.ToDouble(reader["AttendancePercentage"]);
-                    if(attendancePercentage > 0)
-                    {
-                        rtbAttendance.Text = $"{attendancePercentage}%";
-                    }
-                    else
-                    {
-                        rtbAttendance.Text = $"0%";
-                    }
-                }
 
+                string checkQuery = "SELECT COUNT(student) FROM Attendance JOIN Students ON stud_id = student WHERE last_name = @last_name";
+                SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                checkCommand.Parameters.AddWithValue("@last_name", last_name);
+                int count = (int)checkCommand.ExecuteScalar();
+                if (count == 0)
+                {
+                    rtbAttendance.Text = $"Процент посещаемости 0%";
+                    return;
+                }
+                else
+                {
+                    string count_all = "SELECT (CAST(COUNT(CASE WHEN present = 1 THEN 1 END) AS float) / COUNT(present)) * 100.0 AS AttendancePercentage" +
+                        " FROM Students, Attendance WHERE last_name = @last_name AND stud_id = student";
+                    SqlCommand cmd = new SqlCommand(count_all, connection);
+                    cmd.Parameters.AddWithValue("@last_name", last_name);
+                    reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        double attendancePercentage = Convert.ToDouble(reader["AttendancePercentage"]);
+                        if (attendancePercentage > 0)
+                        {
+                            rtbAttendance.Text = $"Процент посещаемости {attendancePercentage}%";
+                        }
+                        else
+                        {
+                            rtbAttendance.Text = $"Процент посещаемости 0%";
+                        }
+                    }
+
+                }
+                
                 reader.Close();
                 connection.Close();
             }
@@ -148,6 +163,57 @@ namespace Academy
                 if (reader != null) reader.Close();
             }
         }
+            void Load_Grade(string last_name)
+            {
+                try
+                {
+                    connection.Open();
+
+                    string checkQuery = "SELECT COUNT(student) FROM Grades JOIN Students ON stud_id = student WHERE last_name = @last_name";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@last_name", last_name);
+                    int count = (int)checkCommand.ExecuteScalar();
+                    if (count == 0)
+                    {
+                        rtbGrade.Text = $"Средний балл 0";
+                        return;
+                    }
+                    else
+                    {
+                        string sum_all1 = "SELECT AVG(grade1), AVG(grade2) FROM Students, Grades WHERE last_name = @last_name AND stud_id = student";
+                        SqlCommand cmd = new SqlCommand(sum_all1, connection);
+                        cmd.Parameters.AddWithValue("@last_name", last_name);
+                        reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            int grade1 = reader.GetInt32(0);
+                            int grade2 = reader.GetInt32(1);
+
+                            int averageGrade = (grade1 + grade2);
+                            if (averageGrade > 0)
+                            {
+                                rtbGrade.Text = $"Средний балл {averageGrade}";
+                            }
+                            else
+                            {
+                                rtbGrade.Text = $"Средний балл 0";
+                            }
+                        }
+                    }
+                    reader.Close();
+                    connection.Close();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(this, exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    if (connection != null) connection.Close();
+                    if (reader != null) reader.Close();
+                }
+            }
+        
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Close();

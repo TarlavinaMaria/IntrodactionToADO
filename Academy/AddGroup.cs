@@ -58,7 +58,7 @@ namespace Academy
                 int count = (int)checkCommand.ExecuteScalar();
                 if (count > 0)
                 {
-                    Console.WriteLine("Группа уже существует.");
+                    MessageBox.Show(this, "Запись уже существует");
                     return;
                 }
 
