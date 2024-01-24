@@ -68,7 +68,6 @@ namespace Academy
                 cmdAdd.Parameters.AddWithValue("@direction", direction);
                 cmdAdd.ExecuteNonQuery();
                 MessageBox.Show(this, "Успешно добавлено");
-
                 rtbGroupName.Clear();
             }
             catch (Exception exception)
@@ -80,6 +79,7 @@ namespace Academy
                 if (connection != null) connection.Close();
                 if (reader != null) reader.Close();
             }
+                LoadSchedule();
         }
 
         private void bnExit_Click(object sender, EventArgs e)

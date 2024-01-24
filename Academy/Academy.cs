@@ -216,11 +216,18 @@ namespace Academy
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                // Получаем значение ячейки, на которую был сделан двойной щелчок
-                string cellValue = dgvStudents.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                StudentInfo studentInfo = new StudentInfo();
-                studentInfo.CellValue = cellValue;
-                studentInfo.ShowDialog();
+                string collumName = dgvStudents.Columns[e.ColumnIndex].Name;
+                if(collumName == "last_name")
+                {
+                     // Получаем значение ячейки, на которую был сделан двойной щелчок
+                     string cellValue = dgvStudents.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                     StudentInfo studentInfo = new StudentInfo(cellValue);
+                     studentInfo.ShowDialog();
+                }
+                else
+                { 
+                    MessageBox.Show(this, "Нажмите на фамилию"); 
+                }
                 
             }
         }
