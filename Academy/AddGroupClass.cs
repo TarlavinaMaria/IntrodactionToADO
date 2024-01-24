@@ -14,19 +14,15 @@ namespace Academy
 {
     public partial class AddGroupClass : Form
     {
-        string connectionString;
-        SqlConnection connection;
-        SqlDataReader reader;
-        DataTable table;
+        string[] week = new string[] { "Пн", "Вт", "Ср","Чт","Пт","Сб", "Вс"};
         public AddGroupClass()
         {
             InitializeComponent();
-            connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
-            connection = new SqlConnection(connectionString);
+            
+            ((Form1)Parent).LoadDataToComboBox(cbDirection, "Directions", "direction_name", "Выберите направление обучения");
+            ((Form1)Parent).LoadDataToComboBox(cbLearningForm, "LearningForms", "form_name", "Выберите форму обучения");
+            ((Form1)Parent).LoadDataToComboBox(cbTime, "LearningTimes", "time_name", "Выберите время обучения");
         }
-        private void LoadComboBox(string sourceTable)
-        {
-
-        }
+        
     }
 }

@@ -368,6 +368,12 @@ namespace Academy
             SelectDataFromTable(dataGridViewGroups, commandLine);
             lblGroupsCount.Text = $"Кол-во групп: {dataGridViewGroups.Rows.Count - 1}";
         }
+
+        private void btnGroupAdd_Click(object sender, EventArgs e)
+        {
+            AddGroupClass add = new AddGroupClass();
+
+        }
     }
     
 }

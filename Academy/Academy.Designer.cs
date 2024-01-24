@@ -264,6 +264,7 @@
             this.btnGroupAdd.TabIndex = 1;
             this.btnGroupAdd.Text = "Добавить";
             this.btnGroupAdd.UseVisualStyleBackColor = true;
+            this.btnGroupAdd.Click += new System.EventHandler(this.btnGroupAdd_Click);
             // 
             // dataGridViewGroups
             // 
