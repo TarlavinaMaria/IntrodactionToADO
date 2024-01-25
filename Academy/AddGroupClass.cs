@@ -19,9 +19,9 @@ namespace Academy
         {
             InitializeComponent();
             
-            ((Form1)Parent).LoadDataToComboBox(cbDirection, "Directions", "direction_name", "Выберите направление обучения");
-            ((Form1)Parent).LoadDataToComboBox(cbLearningForm, "LearningForms", "form_name", "Выберите форму обучения");
-            ((Form1)Parent).LoadDataToComboBox(cbTime, "LearningTimes", "time_name", "Выберите время обучения");
+            //((Form1)Parent).LoadDataToComboBox(cbDirection, "Directions", "direction_name", "Выберите направление обучения");
+            //((Form1)Parent).LoadDataToComboBox(cbLearningForm, "LearningForms", "form_name", "Выберите форму обучения");
+            //((Form1)Parent).LoadDataToComboBox(cbTime, "LearningTimes", "time_name", "Выберите время обучения");
         }
         
     }

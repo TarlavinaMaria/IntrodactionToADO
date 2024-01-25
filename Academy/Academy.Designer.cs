@@ -39,18 +39,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.richTextBoxSearchStudent = new System.Windows.Forms.RichTextBox();
             this.lblStudCount = new System.Windows.Forms.Label();
             this.buttoAdd2 = new System.Windows.Forms.Button();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.cbGroup = new System.Windows.Forms.ComboBox();
             this.tabPageGroups = new System.Windows.Forms.TabPage();
+            this.lblGroupsCount = new System.Windows.Forms.Label();
+            this.cbDirectionOnGroupTab = new System.Windows.Forms.ComboBox();
             this.btnGroupAdd = new System.Windows.Forms.Button();
             this.dataGridViewGroups = new System.Windows.Forms.DataGridView();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
-            this.cbDirectionOnGroupTab = new System.Windows.Forms.ComboBox();
-            this.lblGroupsCount = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -92,7 +91,6 @@
             this.tabPageStudents.Controls.Add(this.label3);
             this.tabPageStudents.Controls.Add(this.label2);
             this.tabPageStudents.Controls.Add(this.buttonAddShedule);
-            this.tabPageStudents.Controls.Add(this.buttonSearch);
             this.tabPageStudents.Controls.Add(this.richTextBoxSearchStudent);
             this.tabPageStudents.Controls.Add(this.lblStudCount);
             this.tabPageStudents.Controls.Add(this.buttoAdd2);
@@ -186,16 +184,6 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Выбор группы: ";
             // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(544, 70);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(146, 23);
-            this.buttonSearch.TabIndex = 6;
-            this.buttonSearch.Text = "Поиск студента";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
             // richTextBoxSearchStudent
             // 
             this.richTextBoxSearchStudent.Location = new System.Drawing.Point(6, 72);
@@ -203,6 +191,7 @@
             this.richTextBoxSearchStudent.Size = new System.Drawing.Size(529, 23);
             this.richTextBoxSearchStudent.TabIndex = 5;
             this.richTextBoxSearchStudent.Text = "";
+            this.richTextBoxSearchStudent.TextChanged += new System.EventHandler(this.richTextBoxSearchStudent_TextChanged);
             // 
             // lblStudCount
             // 
@@ -256,6 +245,24 @@
             this.tabPageGroups.Text = "Группы";
             this.tabPageGroups.UseVisualStyleBackColor = true;
             // 
+            // lblGroupsCount
+            // 
+            this.lblGroupsCount.AutoSize = true;
+            this.lblGroupsCount.Location = new System.Drawing.Point(474, 11);
+            this.lblGroupsCount.Name = "lblGroupsCount";
+            this.lblGroupsCount.Size = new System.Drawing.Size(72, 13);
+            this.lblGroupsCount.TabIndex = 3;
+            this.lblGroupsCount.Text = "Кол-во групп";
+            // 
+            // cbDirectionOnGroupTab
+            // 
+            this.cbDirectionOnGroupTab.FormattingEnabled = true;
+            this.cbDirectionOnGroupTab.Location = new System.Drawing.Point(4, 4);
+            this.cbDirectionOnGroupTab.Name = "cbDirectionOnGroupTab";
+            this.cbDirectionOnGroupTab.Size = new System.Drawing.Size(463, 21);
+            this.cbDirectionOnGroupTab.TabIndex = 2;
+            this.cbDirectionOnGroupTab.SelectedIndexChanged += new System.EventHandler(this.cbDirectionOnGroupTab_SelectedIndexChanged);
+            // 
             // btnGroupAdd
             // 
             this.btnGroupAdd.Location = new System.Drawing.Point(854, 4);
@@ -285,24 +292,6 @@
             this.tabPageTeachers.Text = "Преподаватели";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
             // 
-            // cbDirectionOnGroupTab
-            // 
-            this.cbDirectionOnGroupTab.FormattingEnabled = true;
-            this.cbDirectionOnGroupTab.Location = new System.Drawing.Point(4, 4);
-            this.cbDirectionOnGroupTab.Name = "cbDirectionOnGroupTab";
-            this.cbDirectionOnGroupTab.Size = new System.Drawing.Size(463, 21);
-            this.cbDirectionOnGroupTab.TabIndex = 2;
-            this.cbDirectionOnGroupTab.SelectedIndexChanged += new System.EventHandler(this.cbDirectionOnGroupTab_SelectedIndexChanged);
-            // 
-            // lblGroupsCount
-            // 
-            this.lblGroupsCount.AutoSize = true;
-            this.lblGroupsCount.Location = new System.Drawing.Point(474, 11);
-            this.lblGroupsCount.Name = "lblGroupsCount";
-            this.lblGroupsCount.Size = new System.Drawing.Size(72, 13);
-            this.lblGroupsCount.TabIndex = 3;
-            this.lblGroupsCount.Text = "Кол-во групп";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,7 +320,6 @@
         private System.Windows.Forms.ComboBox cbGroup;
         private System.Windows.Forms.Button buttoAdd2;
         private System.Windows.Forms.Label lblStudCount;
-        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.RichTextBox richTextBoxSearchStudent;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
