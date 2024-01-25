@@ -35,6 +35,7 @@
             this.rtbAttendance = new System.Windows.Forms.RichTextBox();
             this.rtbGrade = new System.Windows.Forms.RichTextBox();
             this.pictureBoxStudent = new System.Windows.Forms.PictureBox();
+            this.buttonAddPhoto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStudent)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,11 +97,22 @@
             this.pictureBoxStudent.TabIndex = 6;
             this.pictureBoxStudent.TabStop = false;
             // 
+            // buttonAddPhoto
+            // 
+            this.buttonAddPhoto.Location = new System.Drawing.Point(301, 196);
+            this.buttonAddPhoto.Name = "buttonAddPhoto";
+            this.buttonAddPhoto.Size = new System.Drawing.Size(244, 23);
+            this.buttonAddPhoto.TabIndex = 7;
+            this.buttonAddPhoto.Text = "Добавить фото";
+            this.buttonAddPhoto.UseVisualStyleBackColor = true;
+            this.buttonAddPhoto.Click += new System.EventHandler(this.buttonAddPhoto_Click);
+            // 
             // StudentInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 221);
+            this.Controls.Add(this.buttonAddPhoto);
             this.Controls.Add(this.pictureBoxStudent);
             this.Controls.Add(this.rtbGrade);
             this.Controls.Add(this.rtbAttendance);
@@ -124,5 +136,6 @@
         private System.Windows.Forms.RichTextBox rtbAttendance;
         private System.Windows.Forms.RichTextBox rtbGrade;
         private System.Windows.Forms.PictureBox pictureBoxStudent;
+        private System.Windows.Forms.Button buttonAddPhoto;
     }
 }
