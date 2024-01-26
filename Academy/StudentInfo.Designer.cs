@@ -94,6 +94,7 @@
             this.pictureBoxStudent.Location = new System.Drawing.Point(301, 13);
             this.pictureBoxStudent.Name = "pictureBoxStudent";
             this.pictureBoxStudent.Size = new System.Drawing.Size(244, 176);
+            this.pictureBoxStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxStudent.TabIndex = 6;
             this.pictureBoxStudent.TabStop = false;
             // 
