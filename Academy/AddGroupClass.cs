@@ -60,9 +60,10 @@ namespace Academy
         string GenerateGroupName()
         {
             string group_name = "";
-            if(cbLearningForm.SelectedItem.ToString() == "Стационар")
+            if(cbLearningForm.SelectedItem.ToString() != "Годичные курсы")
             {
-                if (cbDirection.SelectedItem.ToString() == "Разработка программного обеспечения")
+                if (cbLearningForm.SelectedItem.ToString() == "Полустационар") group_name += lcbWeek.SelectedItem.ToString();
+                //if (cbDirection.SelectedItem.ToString() == "Разработка программного обеспечения")
                 {
                     //DataRow[] rows = set.Tables["Directions"].Select("direction_name = 'Разработка программного обеспечения'");
                     //DataRow row = rows[0];
@@ -72,6 +73,7 @@ namespace Academy
 
                 }
             }
+            group_name += " ";
             return group_name;
         }
 
