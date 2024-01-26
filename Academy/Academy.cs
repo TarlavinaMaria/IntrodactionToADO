@@ -335,6 +335,14 @@ namespace Academy
         private void btnGroupAdd_Click(object sender, EventArgs e)
         {
             AddGroupClass add = new AddGroupClass();
+            LoadDataToComboBox(add.CBDirection, "Directions", "direction_name", "Выберите направление обучения");
+            LoadDataToComboBox(add.CBLearningForm, "LearningForms", "form_name", "Выберите форму обучения");
+            LoadDataToComboBox(add.CBLearningTime, "LearningTimes", "time_name", "Выберите время обучения");
+            DialogResult result = add.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+
+            }
 
         }
 
