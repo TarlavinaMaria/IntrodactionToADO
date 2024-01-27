@@ -39,16 +39,16 @@
             // cbDirection
             // 
             this.cbDirection.FormattingEnabled = true;
-            this.cbDirection.Location = new System.Drawing.Point(13, 28);
+            this.cbDirection.Location = new System.Drawing.Point(13, 44);
             this.cbDirection.Name = "cbDirection";
-            this.cbDirection.Size = new System.Drawing.Size(408, 21);
+            this.cbDirection.Size = new System.Drawing.Size(409, 21);
             this.cbDirection.TabIndex = 0;
             this.cbDirection.Text = "Направление обучения";
             // 
             // cbLearningForm
             // 
             this.cbLearningForm.FormattingEnabled = true;
-            this.cbLearningForm.Location = new System.Drawing.Point(12, 55);
+            this.cbLearningForm.Location = new System.Drawing.Point(12, 12);
             this.cbLearningForm.Name = "cbLearningForm";
             this.cbLearningForm.Size = new System.Drawing.Size(409, 21);
             this.cbLearningForm.TabIndex = 1;
@@ -57,7 +57,7 @@
             // cbTime
             // 
             this.cbTime.FormattingEnabled = true;
-            this.cbTime.Location = new System.Drawing.Point(12, 83);
+            this.cbTime.Location = new System.Drawing.Point(12, 71);
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(409, 21);
             this.cbTime.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             // tbGroupName
             // 
-            this.tbGroupName.Location = new System.Drawing.Point(12, 135);
+            this.tbGroupName.Location = new System.Drawing.Point(12, 130);
             this.tbGroupName.Name = "tbGroupName";
             this.tbGroupName.Size = new System.Drawing.Size(409, 20);
             this.tbGroupName.TabIndex = 3;
@@ -84,7 +84,7 @@
             "Пт",
             "Сб",
             "Вс"});
-            this.lcbWeek.Location = new System.Drawing.Point(12, 110);
+            this.lcbWeek.Location = new System.Drawing.Point(12, 98);
             this.lcbWeek.MultiColumn = true;
             this.lcbWeek.Name = "lcbWeek";
             this.lcbWeek.Size = new System.Drawing.Size(409, 19);
