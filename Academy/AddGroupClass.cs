@@ -26,7 +26,7 @@ namespace Academy
         public System.Windows.Forms.ComboBox CBDirection { get => cbDirection; }
         public System.Windows.Forms.ComboBox CBLearningForm { get => cbLearningForm; }
         public System.Windows.Forms.ComboBox CBLearningTime { get => cbTime; }
-        string[] week = new string[] { "Пн", "Вт", "Ср","Чт","Пт","Сб", "Вс"};
+        string[] week = new string[] { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
         CheckBox[] cbWeek;
         public AddGroupClass()
         {
@@ -41,7 +41,7 @@ namespace Academy
         }
         void GetDataFromBase()
         {
-            try 
+            try
             {
                 set = new DataSet();
                 string cmd = $@"SELECT * FROM Directions";
@@ -52,7 +52,7 @@ namespace Academy
                 builder.DataAdapter = adapter;
                 adapter.Fill(set, "LearningTimes");
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 MessageBox.Show(this, e.Message);
             }
@@ -60,7 +60,7 @@ namespace Academy
         string GenerateGroupName()
         {
             string group_name = "";
-            if(cbLearningForm.SelectedItem.ToString() != "Годичные курсы")
+            if (cbLearningForm.SelectedItem.ToString() != "Годичные курсы")
             {
                 if (cbLearningForm.SelectedItem.ToString() == "Полустационар") group_name += lcbWeek.SelectedItem.ToString();
                 //if (cbDirection.SelectedItem.ToString() == "Разработка программного обеспечения")
@@ -80,6 +80,28 @@ namespace Academy
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             tbGroupName.Text = GenerateGroupName();
+        }
+        void Direction_nameLoad() 
+        {
+            string selectedValue = cbLearningForm.SelectedItem.ToString();
+            string query = "SELECT direction_name FROM Directions, LearningForms WHERE form_name = @learning_form AND form_id = learning_form";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@learning_form", selectedValue);
+            adapter = new SqlDataAdapter(command);
+            cbDirection.Items.Clear();
+            DataTable directionsTable = new DataTable();
+            adapter.Fill(directionsTable);
+            foreach (DataRow row in directionsTable.Rows)
+            {
+                cbDirection.Items.Add(row["direction_name"]);
+            }
+        }
+
+       
+
+        private void cbLearningForm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Direction_nameLoad();
         }
     }
 }
