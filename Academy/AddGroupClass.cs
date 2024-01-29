@@ -18,6 +18,7 @@ namespace Academy
 {
     public partial class AddGroupClass : Form
     {
+        Form1 mainForm;
         private string connectionString;
         SqlConnection connection;
         SqlDataAdapter adapter;// вытягивает результаты запросов из базы и сохраняет их в DataSet
@@ -28,16 +29,18 @@ namespace Academy
         public System.Windows.Forms.ComboBox CBLearningTime { get => cbTime; }
         string[] week = new string[] { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
         CheckBox[] cbWeek;
-        public AddGroupClass()
+        public AddGroupClass(Form1 mainForm)
         {
+            this.mainForm = mainForm;
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             connection = new SqlConnection(connectionString);
             GetDataFromBase();
-            //((Form1)Parent).LoadDataToComboBox(cbDirection, "Directions", "direction_name", "Выберите направление обучения");
-            //((Form1)Parent).LoadDataToComboBox(cbLearningForm, "LearningForms", "form_name", "Выберите форму обучения");
-            //((Form1)Parent).LoadDataToComboBox(cbTime, "LearningTimes", "time_name", "Выберите время обучения");
+            mainForm.LoadDataToComboBox(cbLearningForm, "LearningForms", "form_name", "Выберите форму обучения");
+            //mainForm.LoadDataToComboBox(cbDirection, "Directions", "direction_name", "Выберите направление обучения");
+            mainForm.LoadDataToComboBox(cbTime, "LearningTimes", "time_name", "Выберите время обучения");
             cbWeek = new CheckBox[7];
+            
         }
         void GetDataFromBase()
         {
@@ -102,6 +105,25 @@ namespace Academy
         private void cbLearningForm_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Direction_nameLoad();
+            //mainForm.LoadDataToComboBox
+            //    (
+            //    cbDirection,
+            //    "Directions, LearningForms, LearningFormsDirectionsRelation ",
+            //    "direction_name",
+            //    "Выберите форму обучения",
+            //    $"WHERE learning_form = form_id AND direction = direction_id AND form_name = {CBLearningForm.SelectedItem.ToString()}"
+            //    );
+            cbDirection.Items.Clear();
+            if(cbLearningForm.SelectedIndex != 0)
+            mainForm.LoadDataFromStorageToComboBox
+            (
+            cbDirection,
+            "Directions, LearningForms, LearningFormsDirectionsRelation ",
+            "direction_name",
+            "Выберите форму обучения",
+            $"learning_form = form_id AND direction = direction_id AND form_name = '{CBLearningForm.SelectedItem.ToString()}'"
+            );
+
         }
     }
 }

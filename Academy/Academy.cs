@@ -33,9 +33,11 @@ namespace Academy
             LoadDataToComboBox(cbDirectionOnGroupTab, "Directions", "direction_name", "Выберите направление");
         }
         public void LoadDataToComboBox(System.Windows.Forms.ComboBox comboBox ,
-            string sourceTable, string sourceColumn, string invite = "Выберите значение")
+            string sourceTable, string sourceColumn, string invite = "Выберите значение", 
+            string condition = null)
         {
-            string commandLine = $@"SELECT {sourceColumn} FROM {sourceTable}";
+            string commandLine = $@"SELECT {sourceColumn} FROM {sourceTable} ";
+            if (condition != null) commandLine += condition;
             SqlCommand cmd = new SqlCommand(commandLine, connection);
 
             //cmd.Connection = connection;
@@ -52,6 +54,24 @@ namespace Academy
             reader.Close();
             connection.Close();
             comboBox.SelectedItem = invite;
+        }
+        public void LoadDataFromStorageToComboBox
+            (
+            System.Windows.Forms.ComboBox comboBox,
+             
+             string table_name, 
+             string column_name,
+             string invite = "Выберите значение",
+            string condition = null
+            )
+        {
+            TableStorage storage = new TableStorage();
+            storage.GetDataFromBase(table_name, column_name, condition);
+            DataRow[] rows = storage.Set.Tables[0].Select();
+            for(int i = 0; i < rows.Length; i++)
+            {
+                comboBox.Items.Add(rows[i][column_name]);
+            }
         }
         public void SelectDataFromTable(System.Windows.Forms.DataGridView dataGridView,
             string commandLine)
@@ -334,10 +354,10 @@ namespace Academy
 
         private void btnGroupAdd_Click(object sender, EventArgs e)
         {
-            AddGroupClass add = new AddGroupClass();
-            LoadDataToComboBox(add.CBDirection, "Directions", "direction_name", "Выберите направление обучения");
-            LoadDataToComboBox(add.CBLearningForm, "LearningForms", "form_name", "Выберите форму обучения");
-            LoadDataToComboBox(add.CBLearningTime, "LearningTimes", "time_name", "Выберите время обучения");
+            AddGroupClass add = new AddGroupClass(this);
+            //LoadDataToComboBox(add.CBDirection, "Directions", "direction_name", "Выберите направление обучения");
+            //LoadDataToComboBox(add.CBLearningForm, "LearningForms", "form_name", "Выберите форму обучения");
+            //LoadDataToComboBox(add.CBLearningTime, "LearningTimes", "time_name", "Выберите время обучения");
             DialogResult result = add.ShowDialog();
             if (result == DialogResult.OK)
             {
