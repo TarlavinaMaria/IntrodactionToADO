@@ -73,7 +73,7 @@ namespace Academy
 
                 }
             }
-            group_name += " ";
+            group_name += "_";
             return group_name;
         }
 
@@ -84,7 +84,7 @@ namespace Academy
         void Direction_nameLoad() 
         {
             string selectedValue = cbLearningForm.SelectedItem.ToString();
-            string query = "SELECT direction_name FROM Directions, LearningForms WHERE form_name = @learning_form AND form_id = learning_form";
+            string query = "SELECT direction_name FROM Directions, LearningForms, LearningFormsDirectionsRelation WHERE form_name = @learning_form AND form_id = learning_form AND direction = direction_id";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@learning_form", selectedValue);
             adapter = new SqlDataAdapter(command);
@@ -101,7 +101,7 @@ namespace Academy
 
         private void cbLearningForm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Direction_nameLoad();
+            //Direction_nameLoad();
         }
     }
 }

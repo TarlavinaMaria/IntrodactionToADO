@@ -275,6 +275,7 @@
             // 
             // dataGridViewGroups
             // 
+            this.dataGridViewGroups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewGroups.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewGroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGroups.Location = new System.Drawing.Point(4, 33);
