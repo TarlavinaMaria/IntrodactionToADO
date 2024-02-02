@@ -388,6 +388,15 @@ namespace Academy
             reader.Close();
             connection.Close();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            TableStorage storage = new TableStorage();
+            storage.GetDataFromBase("Groups, Direction", "group_name, direction_name", "direction = direction_id");
+            dataGridViewGroups.DataSource = storage.Set.Tables[0];
+
+            storage.Adapter.Update(storage.Set);
+        }
     }
     
 }
