@@ -115,6 +115,7 @@
             // 
             // btnCreateGroup
             // 
+            this.btnCreateGroup.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCreateGroup.Location = new System.Drawing.Point(12, 156);
             this.btnCreateGroup.Name = "btnCreateGroup";
             this.btnCreateGroup.Size = new System.Drawing.Size(298, 23);

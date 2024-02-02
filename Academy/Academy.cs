@@ -343,7 +343,7 @@ namespace Academy
         {
             //SelectDataFromTable(dataGridViewGroups, "Groups", "group_name", "direction");   
             string commandLine = $@"
-                                    SELECT group_name, direction_name 
+                                    SELECT group_name, direction_name
                                     FROM Groups JOIN Directions ON direction = direction_id
                                     ";
             if(cbDirectionOnGroupTab.SelectedIndex != 0)  
@@ -361,7 +361,9 @@ namespace Academy
             DialogResult result = add.ShowDialog();
             if (result == DialogResult.OK)
             {
-
+                //TableStorage storage = new TableStorage();
+                //storage.GetDataFromBase("Groups, Direction", "group_name, ")
+                cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
             }
 
         }
