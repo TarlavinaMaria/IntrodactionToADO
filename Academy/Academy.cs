@@ -396,7 +396,17 @@ namespace Academy
             //dataGridViewGroups.DataSource = storage.Set.Tables[0];
 
             //storage.Adapter.Update(storage.Set);
-            if()
+            if (dataGridViewGroups.SelectedRows.Count > 0) //Проверяем, что выбранная строка
+            {
+                string group_name = (string)dataGridViewGroups.SelectedRows[0].Cells[0].Value;
+                connection.Open();
+                string query = "DELETE FROM Groups WHERE group_name = @group_name";
+                SqlCommand checkCommand = new SqlCommand(query, connection);
+                checkCommand.Parameters.AddWithValue("@group_name", group_name);
+                checkCommand.ExecuteNonQuery();
+                connection.Close();
+                cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
+            }
         }
     }
     
