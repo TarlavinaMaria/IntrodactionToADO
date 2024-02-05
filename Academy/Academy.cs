@@ -96,12 +96,23 @@ namespace Academy
             {
                 table.Columns.Add(reader.GetName(i));
             }
+            
+
             while(reader.Read())
             {
                 DataRow row = table.NewRow();
                 for(int i = 0; i < reader.FieldCount; i++)
                 {
                     row[i] = reader[i];
+                }
+                //if(row["learning_days"] != null) 
+                try
+                {
+                    row["learning_days"] = BitSetToDays(Convert.ToByte(row["learning_days"]));
+                }
+                catch (Exception e)
+                {
+                    
                 }
                 table.Rows.Add(row);
             }
@@ -343,7 +354,7 @@ namespace Academy
         {
             //SelectDataFromTable(dataGridViewGroups, "Groups", "group_name", "direction");   
             string commandLine = $@"
-                                    SELECT group_name, direction_name
+                                    SELECT group_name, learning_days, direction_name
                                     FROM Groups JOIN Directions ON direction = direction_id
                                     ";
             if(cbDirectionOnGroupTab.SelectedIndex != 0)  
@@ -359,13 +370,13 @@ namespace Academy
             //LoadDataToComboBox(add.CBLearningForm, "LearningForms", "form_name", "Выберите форму обучения");
             //LoadDataToComboBox(add.CBLearningTime, "LearningTimes", "time_name", "Выберите время обучения");
             DialogResult result = add.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                //TableStorage storage = new TableStorage();
-                //storage.GetDataFromBase("Groups, Direction", "group_name, ")
-                cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
-            }
-
+            //if (result == DialogResult.OK)
+            //{
+            //    //TableStorage storage = new TableStorage();
+            //    //storage.GetDataFromBase("Groups, Direction", "group_name, ")
+            //    cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
+            //}
+            cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
         }
 
         private void richTextBoxSearchStudent_TextChanged(object sender, EventArgs e)
@@ -391,22 +402,38 @@ namespace Academy
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //TableStorage storage = new TableStorage();
-            //storage.GetDataFromBase("Groups, Directions", "group_name, direction_name", "direction = direction_id");
-            //dataGridViewGroups.DataSource = storage.Set.Tables[0];
+            TableStorage storage = new TableStorage();
+            storage.GetDataFromBase("Groups, Directions", "group_name, direction_name", "direction = direction_id");
+            dataGridViewGroups.DataSource = storage.Set.Tables[0];
 
-            //storage.Adapter.Update(storage.Set);
-            if (dataGridViewGroups.SelectedRows.Count > 0) //Проверяем, что выбранная строка
+            storage.Adapter.Update(storage.Set);
+            //-----------------------------------------------------------------------------------------------------------------
+            //Мой код удаления
+            //if (dataGridViewGroups.SelectedRows.Count > 0) //Проверяем, что выбранная строка
+            //{
+            //    string group_name = (string)dataGridViewGroups.SelectedRows[0].Cells[0].Value;
+            //    connection.Open();
+            //    string query = "DELETE FROM Groups WHERE group_name = @group_name";
+            //    SqlCommand checkCommand = new SqlCommand(query, connection);
+            //    checkCommand.Parameters.AddWithValue("@group_name", group_name);
+            //    checkCommand.ExecuteNonQuery();
+            //    connection.Close();
+            //    cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
+            //}
+        }
+        private string BitSetToDays(byte bitset)
+        {
+            string[] week = { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
+            string days = "";
+            for (int i = 0; i < week.Length; i++)
             {
-                string group_name = (string)dataGridViewGroups.SelectedRows[0].Cells[0].Value;
-                connection.Open();
-                string query = "DELETE FROM Groups WHERE group_name = @group_name";
-                SqlCommand checkCommand = new SqlCommand(query, connection);
-                checkCommand.Parameters.AddWithValue("@group_name", group_name);
-                checkCommand.ExecuteNonQuery();
-                connection.Close();
-                cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
+                byte day = 1;
+                day <<= i;
+                int day_index = (int)Math.Log(day&bitset, 2);
+                if ((day & bitset)!=0)
+                    days += week[day_index] + ",";
             }
+            return days;
         }
     }
     
