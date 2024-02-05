@@ -403,10 +403,20 @@ namespace Academy
         private void btnDelete_Click(object sender, EventArgs e)
         {
             TableStorage storage = new TableStorage();
-            storage.GetDataFromBase("Groups, Directions", "group_name, direction_name", "direction = direction_id");
-            dataGridViewGroups.DataSource = storage.Set.Tables[0];
+            //storage.GetDataFromBase("Groups, Directions", "group_name, direction_name", "direction = direction_id");
+            //dataGridViewGroups.DataSource = storage.Set.Tables[0];
+            storage.GetDataFromBase("Groups");
+            //dataGridViewGroups.DataSource = storage.Set.Tables[0];
 
-            storage.Adapter.Update(storage.Set);
+            foreach (DataGridViewCell cell in dataGridViewGroups.SelectedCells)
+            {
+                storage.Set.Tables[0].Rows.RemoveAt(cell.RowIndex);
+                //MessageBox.Show(this, storage.Set.Tables[0].Rows[cell.RowIndex]["group_name"].ToString());
+                //dataGridViewGroups.Rows.RemoveAt(cell.RowIndex);
+            }
+            int deleted_rows = storage.Adapter.Update(storage.Set, ("Groups"));
+            MessageBox.Show(this, deleted_rows.ToString(), "Info");
+            cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
             //-----------------------------------------------------------------------------------------------------------------
             //Мой код удаления
             //if (dataGridViewGroups.SelectedRows.Count > 0) //Проверяем, что выбранная строка
