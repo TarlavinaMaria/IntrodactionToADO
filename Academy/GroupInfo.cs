@@ -36,6 +36,7 @@ namespace Academy
             Load_Spec(data);
             Load_Time(data);
             Load_Days(data);
+            Load_TimeComboBox();
         }
     void Load_GroupInfo(string group_name)
     {
@@ -115,6 +116,31 @@ namespace Academy
                 if (reader != null) reader.Close();
             }
         }
+        void Load_TimeComboBox()
+        {
+            try
+            {
+                string commandLine = @"SELECT time_name FROM LearningTimes";
+                SqlCommand cmd = new SqlCommand(commandLine, connection);
+                connection.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    cbTime.Items.Add(reader[0]);
+                }
+                reader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(this, exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+                if (reader != null) reader.Close();
+            }
+        }
         private string BitSetToDays(byte bitset)
         {
             string[] week = { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
@@ -155,7 +181,7 @@ namespace Academy
                 if (reader != null) reader.Close();
             }
         }
-
+        
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Close();
@@ -163,7 +189,43 @@ namespace Academy
 
         private void btnGroupChange_Click(object sender, EventArgs e)
         {
+            try
+            {
+                connection.Open();
+                if(cbTime !=  null)
+                {
+                    string time_select = cbTime.SelectedItem.ToString();
+                    string commandTime = $"SELECT time_id FROM LearningTimes WHERE time_name = '{time_select}'";
+                    SqlCommand cmd_time = new SqlCommand(commandTime, connection);
+                    int time_id = Convert.ToInt32(cmd_time.ExecuteScalar());
 
+                    string group_select = rtbGroupInfo.Text;
+                    string commandGroup = $"SELECT group_id FROM Groups WHERE group_name = '{group_select}'";
+                    SqlCommand cmd_group = new SqlCommand(commandGroup, connection);
+                    int group_id = Convert.ToInt32(cmd_group.ExecuteScalar());
+
+                    string change = "UPDATE Groups SET learning_time = @time_id WHERE group_id = @group_id";
+                    SqlCommand cmdChange = new SqlCommand(change, connection);
+                    cmdChange.Parameters.AddWithValue("@time_id", time_id);
+                    cmdChange.Parameters.AddWithValue("@group_id", group_id);
+                    cmdChange.ExecuteNonQuery();
+
+                    connection.Close();
+                    MessageBox.Show(this, "Успешно группа изменена");
+                    Load_Time(CellValue);
+                    Load_Days(CellValue);
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(this, exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+                if (reader != null) reader.Close();
+
+            }
         }
     }
 }

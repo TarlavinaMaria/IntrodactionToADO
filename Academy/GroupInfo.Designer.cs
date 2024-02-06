@@ -34,15 +34,15 @@
             this.rtbDayInfo = new System.Windows.Forms.RichTextBox();
             this.rtbTime = new System.Windows.Forms.RichTextBox();
             this.btnGroupChange = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbTime = new System.Windows.Forms.ComboBox();
+            this.clbWeekChange = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // rtbGroupInfo
             // 
             this.rtbGroupInfo.Location = new System.Drawing.Point(12, 12);
             this.rtbGroupInfo.Name = "rtbGroupInfo";
-            this.rtbGroupInfo.Size = new System.Drawing.Size(493, 28);
+            this.rtbGroupInfo.Size = new System.Drawing.Size(510, 28);
             this.rtbGroupInfo.TabIndex = 5;
             this.rtbGroupInfo.Text = "Группа";
             // 
@@ -50,13 +50,13 @@
             // 
             this.rtbSpecInfo.Location = new System.Drawing.Point(12, 46);
             this.rtbSpecInfo.Name = "rtbSpecInfo";
-            this.rtbSpecInfo.Size = new System.Drawing.Size(493, 28);
+            this.rtbSpecInfo.Size = new System.Drawing.Size(510, 28);
             this.rtbSpecInfo.TabIndex = 4;
             this.rtbSpecInfo.Text = "Специальность";
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(12, 148);
+            this.buttonExit.Location = new System.Drawing.Point(12, 134);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(240, 23);
             this.buttonExit.TabIndex = 6;
@@ -68,51 +68,63 @@
             // 
             this.rtbDayInfo.Location = new System.Drawing.Point(12, 80);
             this.rtbDayInfo.Name = "rtbDayInfo";
-            this.rtbDayInfo.Size = new System.Drawing.Size(240, 28);
+            this.rtbDayInfo.Size = new System.Drawing.Size(240, 21);
             this.rtbDayInfo.TabIndex = 8;
             this.rtbDayInfo.Text = "Дни обучения";
             // 
             // rtbTime
             // 
-            this.rtbTime.Location = new System.Drawing.Point(12, 114);
+            this.rtbTime.Location = new System.Drawing.Point(12, 107);
             this.rtbTime.Name = "rtbTime";
-            this.rtbTime.Size = new System.Drawing.Size(240, 28);
+            this.rtbTime.Size = new System.Drawing.Size(240, 21);
             this.rtbTime.TabIndex = 7;
             this.rtbTime.Text = "Время";
             // 
             // btnGroupChange
             // 
-            this.btnGroupChange.Location = new System.Drawing.Point(259, 148);
+            this.btnGroupChange.Location = new System.Drawing.Point(259, 134);
             this.btnGroupChange.Name = "btnGroupChange";
-            this.btnGroupChange.Size = new System.Drawing.Size(246, 23);
+            this.btnGroupChange.Size = new System.Drawing.Size(263, 23);
             this.btnGroupChange.TabIndex = 9;
             this.btnGroupChange.Text = "Изменить";
             this.btnGroupChange.UseVisualStyleBackColor = true;
             this.btnGroupChange.Click += new System.EventHandler(this.btnGroupChange_Click);
             // 
-            // comboBox1
+            // cbTime
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(259, 121);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(246, 21);
-            this.comboBox1.TabIndex = 10;
+            this.cbTime.FormattingEnabled = true;
+            this.cbTime.Location = new System.Drawing.Point(258, 107);
+            this.cbTime.Name = "cbTime";
+            this.cbTime.Size = new System.Drawing.Size(263, 21);
+            this.cbTime.TabIndex = 10;
+            this.cbTime.Text = "Нажмите, чтобы поменять время обучения";
             // 
-            // comboBox2
+            // clbWeekChange
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(258, 87);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(246, 21);
-            this.comboBox2.TabIndex = 11;
+            this.clbWeekChange.CheckOnClick = true;
+            this.clbWeekChange.ColumnWidth = 35;
+            this.clbWeekChange.FormattingEnabled = true;
+            this.clbWeekChange.Items.AddRange(new object[] {
+            "Пн",
+            "Вт",
+            "Ср",
+            "Чт",
+            "Пт",
+            "Сб",
+            "Вс"});
+            this.clbWeekChange.Location = new System.Drawing.Point(259, 80);
+            this.clbWeekChange.MultiColumn = true;
+            this.clbWeekChange.Name = "clbWeekChange";
+            this.clbWeekChange.Size = new System.Drawing.Size(262, 19);
+            this.clbWeekChange.TabIndex = 11;
             // 
             // GroupInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 183);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(534, 165);
+            this.Controls.Add(this.clbWeekChange);
+            this.Controls.Add(this.cbTime);
             this.Controls.Add(this.btnGroupChange);
             this.Controls.Add(this.rtbDayInfo);
             this.Controls.Add(this.rtbTime);
@@ -133,7 +145,7 @@
         private System.Windows.Forms.RichTextBox rtbDayInfo;
         private System.Windows.Forms.RichTextBox rtbTime;
         private System.Windows.Forms.Button btnGroupChange;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbTime;
+        private System.Windows.Forms.CheckedListBox clbWeekChange;
     }
 }
