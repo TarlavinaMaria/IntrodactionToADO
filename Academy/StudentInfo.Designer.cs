@@ -43,7 +43,7 @@
             // 
             this.buttonExit.Location = new System.Drawing.Point(12, 183);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(75, 23);
+            this.buttonExit.Size = new System.Drawing.Size(262, 23);
             this.buttonExit.TabIndex = 0;
             this.buttonExit.Text = "Выход";
             this.buttonExit.UseVisualStyleBackColor = true;

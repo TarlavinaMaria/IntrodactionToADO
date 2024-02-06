@@ -78,6 +78,12 @@
       <DependentUpon>ChangeGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Connector.cs" />
+    <Compile Include="GroupInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupInfo.Designer.cs">
+      <DependentUpon>GroupInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule.cs">
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeGroup.resx">
       <DependentUpon>ChangeGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupInfo.resx">
+      <DependentUpon>GroupInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

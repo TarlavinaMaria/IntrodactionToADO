@@ -445,6 +445,26 @@ namespace Academy
             }
             return days;
         }
+
+        private void dataGridViewGroups_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                string collumName = dataGridViewGroups.Columns[e.ColumnIndex].Name;
+                if (collumName == "group_name")
+                {
+                    // Получаем значение ячейки, на которую был сделан двойной щелчок
+                    string cellValue = dataGridViewGroups.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    GroupInfo groupInfo= new GroupInfo(cellValue);
+                    groupInfo.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show(this, "Нажмите на группу");
+                }
+
+            }
+        }
     }
     
 }
