@@ -54,7 +54,9 @@ namespace Academy
             
             cbDirection.SelectedItem = storage.Set.Tables["Directions"].Select($"direction_id = {direction}")[0]["direction_name"];
             cbTime.SelectedIndex = learning_time;
+            btnCreateGroup.Text = "Сохранить";
         }
+
         byte GetBitSet()
         {
             byte days = 0;
