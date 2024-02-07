@@ -294,6 +294,7 @@
             this.dataGridViewGroups.Location = new System.Drawing.Point(4, 33);
             this.dataGridViewGroups.MultiSelect = false;
             this.dataGridViewGroups.Name = "dataGridViewGroups";
+            this.dataGridViewGroups.ReadOnly = true;
             this.dataGridViewGroups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewGroups.Size = new System.Drawing.Size(936, 473);
             this.dataGridViewGroups.TabIndex = 0;

@@ -43,6 +43,18 @@ namespace Academy
             cbWeek = new CheckBox[7];
             
         }
+        public AddGroupClass(Form1 mainForm, string group_name, byte direction, byte learning_time, byte learning_days):this(mainForm)
+        {
+            TableStorage storage = new TableStorage();
+            storage.GetDataFromBase("Directions");
+            storage.GetDataFromBase("LearningFormsDirectionsRelation");
+
+            tbGroupName.Text = group_name;
+            cbLearningForm.SelectedIndex = Convert.ToInt32(storage.Set.Tables["LearningFormsDirectionsRelation"].Select($"direction = {direction}")[0]["learning_form"]);
+            
+            cbDirection.SelectedItem = storage.Set.Tables["Directions"].Select($"direction_id = {direction}")[0]["direction_name"];
+            cbTime.SelectedIndex = learning_time;
+        }
         byte GetBitSet()
         {
             byte days = 0;

@@ -97,6 +97,7 @@
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(263, 21);
             this.cbTime.TabIndex = 10;
+            this.cbTime.Text = "Нажмите для изменения времени";
             // 
             // clbWeekChange
             // 

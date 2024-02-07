@@ -353,12 +353,22 @@ namespace Academy
         private void cbDirectionOnGroupTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             //SelectDataFromTable(dataGridViewGroups, "Groups", "group_name", "direction");   
-            string commandLine = $@"
-                                    SELECT group_name, learning_days, direction_name
+            //string commandLine = $@"
+            //                        SELECT group_name, learning_days, direction_name, [number_of_students] = SELECT COUNT(stud_id) FROM Students JOIN Groups ON [group] = group_id
+            //                        FROM Groups JOIN Directions ON direction = direction_id
+            //                        ";
+            string condition = "";
+            if (cbDirectionOnGroupTab.SelectedIndex != 0)
+                condition += $@"WHERE direction_name = '{cbDirectionOnGroupTab.SelectedItem}'";
+            string commandLine = $@"SELECT group_name, learning_days, direction_name, [number_of_students] = COUNT(stud_id)
                                     FROM Groups JOIN Directions ON direction = direction_id
+                                    LEFT JOIN Students ON [group] = [group_id] 
+                                    {condition}
+                                    GROUP BY [group_id], [group_name], [learning_days], [direction_name]
+                                    ORDER BY [group_id]
                                     ";
-            if(cbDirectionOnGroupTab.SelectedIndex != 0)  
-               commandLine += $@"WHERE direction_name = '{cbDirectionOnGroupTab.SelectedItem}'";
+            //if(cbDirectionOnGroupTab.SelectedIndex != 0)  
+               //commandLine += $@"WHERE direction_name = '{cbDirectionOnGroupTab.SelectedItem}'";
             SelectDataFromTable(dataGridViewGroups, commandLine);
             lblGroupsCount.Text = $"Кол-во групп: {dataGridViewGroups.Rows.Count - 1}";
         }
@@ -454,22 +464,20 @@ namespace Academy
 
         private void dataGridViewGroups_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                string collumName = dataGridViewGroups.Columns[e.ColumnIndex].Name;
-                if (collumName == "group_name")
-                {
-                    // Получаем значение ячейки, на которую был сделан двойной щелчок
-                    string cellValue = dataGridViewGroups.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                    GroupInfo groupInfo= new GroupInfo(cellValue);
-                    groupInfo.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show(this, "Нажмите на группу");
-                }
+            TableStorage storage = new TableStorage();
+            storage.GetDataFromBase("Groups");
+            //MessageBox.Show()
+           DataRow[] rows = storage.Set.Tables["Groups"].Select($"group_name = '{dataGridViewGroups.SelectedRows[0].Cells["group_name"].Value.ToString()}'");
+            AddGroupClass addGroup = new AddGroupClass
+                (
+                this,
+                rows[0]["group_name"].ToString(),
+                Convert.ToByte(rows[0]["direction"]),
+                Convert.ToByte(rows[0]["learning_time"]), 
+                Convert.ToByte(rows[0]["learning_days"])
+               );
+            addGroup.Show();
 
-            }
         }
     }
     
