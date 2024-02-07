@@ -292,7 +292,9 @@
             this.dataGridViewGroups.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewGroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGroups.Location = new System.Drawing.Point(4, 33);
+            this.dataGridViewGroups.MultiSelect = false;
             this.dataGridViewGroups.Name = "dataGridViewGroups";
+            this.dataGridViewGroups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewGroups.Size = new System.Drawing.Size(936, 473);
             this.dataGridViewGroups.TabIndex = 0;
             this.dataGridViewGroups.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGroups_CellDoubleClick);

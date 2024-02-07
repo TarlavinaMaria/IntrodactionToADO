@@ -95,13 +95,25 @@ namespace Academy
             try
             {
                 connection.Open();
-                string spec = @"SELECT time_name FROM Groups, LearningTimes WHERE group_name = @group_name AND learning_time = time_id";
-                SqlCommand cmd = new SqlCommand(spec, connection);
-                cmd.Parameters.AddWithValue("@group_name", group_name);
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
+                string checkQuery = "SELECT COUNT(learning_time) FROM Groups JOIN LearningTimes ON learning_time = time_id WHERE group_name = @group_name";
+                SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                checkCommand.Parameters.AddWithValue("@group_name", group_name);
+                int count = (int)checkCommand.ExecuteScalar();
+                if (count == 0)
                 {
-                    rtbTime.Text = $"{reader[0]}";
+                    rtbTime.Text = $"Нет информации";
+                    return;
+                }
+                if (count != 0)
+                {
+                    string spec = @"SELECT time_name FROM Groups, LearningTimes WHERE group_name = @group_name AND learning_time = time_id";
+                    SqlCommand cmd = new SqlCommand(spec, connection);
+                    cmd.Parameters.AddWithValue("@group_name", group_name);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        rtbTime.Text = $"{reader[0]}";
+                    }
                 }
                 reader.Close();
                 connection.Close();
@@ -160,13 +172,26 @@ namespace Academy
             try
             {
                 connection.Open();
-                string spec = @"SELECT learning_days FROM Groups WHERE group_name = @group_name";
-                SqlCommand cmd = new SqlCommand(spec, connection);
-                cmd.Parameters.AddWithValue("@group_name", group_name);
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
+                string checkQuery = "SELECT COUNT(learning_days) FROM Groups WHERE group_name = @group_name";
+                SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                checkCommand.Parameters.AddWithValue("@group_name", group_name);
+                int count = (int)checkCommand.ExecuteScalar();
+                if (count == 0)
                 {
-                    rtbDayInfo.Text = BitSetToDays(Convert.ToByte(reader["learning_days"]));
+                    rtbDayInfo.Text = $"Нет информации";
+                    return;
+                }
+                if (count != 0)
+                {
+                    string spec = @"SELECT learning_days FROM Groups WHERE group_name = @group_name";
+                    SqlCommand cmd = new SqlCommand(spec, connection);
+                    cmd.Parameters.AddWithValue("@group_name", group_name);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        rtbDayInfo.Text = BitSetToDays(Convert.ToByte(reader["learning_days"]));
+                    }
+
                 }
                 reader.Close();
                 connection.Close();
@@ -191,30 +216,29 @@ namespace Academy
         {
             try
             {
-                connection.Open();
-                if(cbTime !=  null)
-                {
-                    string time_select = cbTime.SelectedItem.ToString();
-                    string commandTime = $"SELECT time_id FROM LearningTimes WHERE time_name = '{time_select}'";
-                    SqlCommand cmd_time = new SqlCommand(commandTime, connection);
-                    int time_id = Convert.ToInt32(cmd_time.ExecuteScalar());
+                
+                 connection.Open();
+                 string time_select = cbTime.SelectedItem.ToString();
+                 string commandTime = $"SELECT time_id FROM LearningTimes WHERE time_name = '{time_select}'";
+                 SqlCommand cmd_time = new SqlCommand(commandTime, connection);
+                 int time_id = Convert.ToInt32(cmd_time.ExecuteScalar());
 
-                    string group_select = rtbGroupInfo.Text;
-                    string commandGroup = $"SELECT group_id FROM Groups WHERE group_name = '{group_select}'";
-                    SqlCommand cmd_group = new SqlCommand(commandGroup, connection);
-                    int group_id = Convert.ToInt32(cmd_group.ExecuteScalar());
+                 string group_select = rtbGroupInfo.Text;
+                 string commandGroup = $"SELECT group_id FROM Groups WHERE group_name = '{group_select}'";
+                 SqlCommand cmd_group = new SqlCommand(commandGroup, connection);
+                 int group_id = Convert.ToInt32(cmd_group.ExecuteScalar());
 
-                    string change = "UPDATE Groups SET learning_time = @time_id WHERE group_id = @group_id";
-                    SqlCommand cmdChange = new SqlCommand(change, connection);
-                    cmdChange.Parameters.AddWithValue("@time_id", time_id);
-                    cmdChange.Parameters.AddWithValue("@group_id", group_id);
-                    cmdChange.ExecuteNonQuery();
+                 string change = "UPDATE Groups SET learning_time = @time_id WHERE group_id = @group_id";
+                 SqlCommand cmdChange = new SqlCommand(change, connection);
+                 cmdChange.Parameters.AddWithValue("@time_id", time_id);
+                 cmdChange.Parameters.AddWithValue("@group_id", group_id);
+                 cmdChange.ExecuteNonQuery();
 
-                    connection.Close();
-                    MessageBox.Show(this, "Успешно группа изменена");
-                    Load_Time(CellValue);
-                    Load_Days(CellValue);
-                }
+                 connection.Close();
+                 MessageBox.Show(this, "Успешно время изменено");
+                 Load_Time(CellValue);
+                 Load_Days(CellValue);
+                
             }
             catch (Exception exception)
             {

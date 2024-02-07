@@ -408,15 +408,21 @@ namespace Academy
             storage.GetDataFromBase("Groups");
             //dataGridViewGroups.DataSource = storage.Set.Tables[0];
 
-            foreach (DataGridViewCell cell in dataGridViewGroups.SelectedCells)
-            {
-                storage.Set.Tables[0].Rows.RemoveAt(cell.RowIndex);
-                //MessageBox.Show(this, storage.Set.Tables[0].Rows[cell.RowIndex]["group_name"].ToString());
-                //dataGridViewGroups.Rows.RemoveAt(cell.RowIndex);
-            }
-            int deleted_rows = storage.Adapter.Update(storage.Set, ("Groups"));
-            MessageBox.Show(this, deleted_rows.ToString(), "Info");
-            cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
+            //foreach (DataGridViewCell cell in dataGridViewGroups.SelectedCells)
+            //{
+            //    storage.Set.Tables[0].Rows.RemoveAt(cell.RowIndex);
+            //    //MessageBox.Show(this, storage.Set.Tables[0].Rows[cell.RowIndex]["group_name"].ToString());
+            //    //dataGridViewGroups.Rows.RemoveAt(cell.RowIndex);
+            //}
+            //int deleted_rows = storage.Adapter.Update(storage.Set, ("Groups"));
+
+            //MessageBox.Show(this, (string)dataGridViewGroups.SelectedRows[0].Cells["group_name"].Value, "Info");
+            
+                DataRow[] rows = storage.Set.Tables["Groups"].Select($"group_name = '{dataGridViewGroups.SelectedRows[0].Cells["group_name"].Value.ToString()}'");
+                rows[0].Delete();
+                storage.Adapter.Update(storage.Set, "Groups");
+                cbDirectionOnGroupTab_SelectedIndexChanged(sender, e);
+            
             //-----------------------------------------------------------------------------------------------------------------
             //Мой код удаления
             //if (dataGridViewGroups.SelectedRows.Count > 0) //Проверяем, что выбранная строка
